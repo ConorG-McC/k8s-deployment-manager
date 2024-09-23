@@ -1,0 +1,68 @@
+/* Progress.module.css */
+
+.progressContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.progressStage {
+  flex: 1;
+  min-width: 120px;
+  padding: 15px;
+  margin: 5px;
+  background-color: #e0e0e0;
+  text-align: center;
+  border-radius: 8px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.progressStage svg {
+  margin-bottom: 8px;
+  width: 20px;
+  height: 20px;
+}
+
+.progressStage::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: var(--input-background);
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+}
+
+.completed {
+  background-color: var(--success-color);
+  color: #ffffff;
+}
+
+.completed::before {
+  background-color: var(--success-color);
+}
+
+.error {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+}
+
+.error::before {
+  background-color: var(--secondary-color);
+}
+
+@media (max-width: 600px) {
+  .progressContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .progressStage {
+    width: 80%;
+  }
+}

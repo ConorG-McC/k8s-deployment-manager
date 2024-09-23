@@ -1,0 +1,22 @@
+/* DeployedAppLink.module.css */
+
+.linkContainer {
+  font-size: 1.1em;
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: var(--success-color);
+  color: #ffffff;
+  border-radius: 4px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.link {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #e0e0e0;
+}

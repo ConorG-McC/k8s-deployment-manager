@@ -1,0 +1,59 @@
+/* DeployForm.module.css */
+
+.form {
+  background-color: var(--input-background);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formGroup {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.input {
+  padding: 10px 12px;
+  font-size: 1em;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1em;
+  background-color: var(--button-background);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--button-hover-background);
+}
+
+.buttonDisabled {
+  background-color: var(--button-disabled-background);
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 20px;
+  }
+}

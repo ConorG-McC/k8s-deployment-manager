@@ -1,0 +1,26 @@
+/* StatusMessage.module.css */
+
+.message {
+  font-size: 1.1em;
+  margin-top: 20px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.success {
+  background-color: var(--success-color);
+  color: #ffffff;
+}
+
+.error {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+}
+
+.info {
+  background-color: #2196f3;
+  color: #ffffff;
+}
