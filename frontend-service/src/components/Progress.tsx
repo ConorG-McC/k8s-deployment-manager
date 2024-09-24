@@ -1,21 +1,17 @@
 import React from 'react';
 import styles from './Progress.module.css';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { DeploymentStages } from '../enum/Enums';
 
 interface ProgressProps {
-  stages: string[];
   currentStage: number;
   errorStage: number | null;
 }
 
-const Progress: React.FC<ProgressProps> = ({
-  stages,
-  currentStage,
-  errorStage,
-}) => {
+const Progress: React.FC<ProgressProps> = ({ currentStage, errorStage }) => {
   return (
     <div className={styles.progressContainer}>
-      {stages.map((stage, index) => (
+      {Object.values(DeploymentStages).map((stage, index) => (
         <div
           key={index}
           className={`${styles.progressStage} ${

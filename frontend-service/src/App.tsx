@@ -3,13 +3,16 @@ import axios from 'axios';
 import './App.css';
 import Form from './components/Form';
 import Progress from './components/Progress';
-import StatusMessage from './components/StatusMessage';
 import DeployedAppLink from './components/DeployedAppLink';
+import { StatusMessageTypes, StatusMessages } from './enum/Enums';
+import StatusMessage from './components/StatusMessage';
 
 const App: React.FC = () => {
-  const [statusMessage, setStatusMessage] = useState('');
-  const [statusType, setStatusType] = useState<'success' | 'error' | 'info'>(
-    'info'
+  const [statusMessage, setStatusMessage] = useState<StatusMessages>(
+    StatusMessages.None
+  );
+  const [statusType, setStatusType] = useState<StatusMessageTypes>(
+    StatusMessageTypes.Info
   );
   const [isDeploying, setIsDeploying] = useState(false);
   const [appUrl, setAppUrl] = useState('');
@@ -18,15 +21,6 @@ const App: React.FC = () => {
   const [deploymentId, setDeploymentId] = useState<string | null>(null);
 
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || '';
-
-  const stages = [
-    'Starting Deployment',
-    'Pulling Image',
-    'Creating Deployment',
-    'Setting Up Service',
-    'Finalizing Deployment',
-    'Completed',
-  ];
 
   useEffect(() => {
     if (!deploymentId) return;
@@ -49,18 +43,18 @@ const App: React.FC = () => {
 
         if (data.complete) {
           setIsDeploying(false);
-          setStatusType('success');
+          setStatusType(StatusMessageTypes.Success);
           eventSource?.close();
         } else {
-          setStatusType('info');
+          setStatusType(StatusMessageTypes.Info);
         }
       };
 
       eventSource.onerror = (error) => {
         console.error('SSE error:', error);
         setErrorStage(currentStage + 1);
-        setStatusMessage('Deployment failed. Please try again.');
-        setStatusType('error');
+        setStatusMessage(StatusMessages.DeploymentFailed);
+        setStatusType(StatusMessageTypes.Error);
         setIsDeploying(false);
         eventSource?.close();
       };
@@ -81,25 +75,25 @@ const App: React.FC = () => {
     replicas: number;
   }) => {
     const { imageName, serviceName, port, replicas } = formData;
-    setStatusMessage('');
-    setStatusType('info');
+    setStatusMessage(StatusMessages.None);
+    setStatusType(StatusMessageTypes.Info);
     setErrorStage(null);
 
     // Validate form data
     if (!imageName || !serviceName || !port) {
-      setStatusMessage('All fields except Replicas are required.');
-      setStatusType('error');
+      setStatusMessage(StatusMessages.RequiredFields);
+      setStatusType(StatusMessageTypes.Error);
       return;
     }
     if (Number(port) < 1 || Number(port) > 65535) {
-      setStatusMessage('Port must be between 1 and 65535.');
-      setStatusType('error');
+      setStatusMessage(StatusMessages.PortRange);
+      setStatusType(StatusMessageTypes.Error);
       return;
     }
 
     setIsDeploying(true);
-    setStatusMessage('Starting deployment...');
-    setStatusType('info');
+    setStatusMessage(StatusMessages.DeploymentStarted);
+    setStatusType(StatusMessageTypes.Info);
     setAppUrl('');
     setCurrentStage(1);
 
@@ -119,10 +113,9 @@ const App: React.FC = () => {
     } catch (error: any) {
       setErrorStage(currentStage + 1);
       const errorMsg =
-        error.response?.data?.error ||
-        'Deployment failed. Please check the details and try again.';
+        error.response?.data?.error || StatusMessages.DeploymentFailed;
       setStatusMessage(errorMsg);
-      setStatusType('error');
+      setStatusType(StatusMessageTypes.Error);
       console.error('Deployment error:', error);
       setIsDeploying(false);
       setCurrentStage(0); // Reset on error
@@ -137,11 +130,7 @@ const App: React.FC = () => {
         <StatusMessage message={statusMessage} type={statusType} />
       )}
       {isDeploying && (
-        <Progress
-          stages={stages}
-          currentStage={currentStage}
-          errorStage={errorStage}
-        />
+        <Progress currentStage={currentStage} errorStage={errorStage} />
       )}
       {appUrl && <DeployedAppLink appUrl={appUrl} />}
     </div>
