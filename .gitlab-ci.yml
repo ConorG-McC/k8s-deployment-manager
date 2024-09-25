@@ -1,0 +1,30 @@
+stages:
+  - trigger_child_pipelines
+
+# Trigger Infrastructure Child Pipeline
+trigger_infrastructure:
+  stage: trigger_child_pipelines
+  trigger:
+    include: .gitlab-ci-infra.yml
+    strategy: depend
+  variables:
+    ENVIRONMENT: production
+    REST_API_URL: $REST_API_URL
+    WEBSOCKET_API_URL: $WEBSOCKET_API_URL
+  only:
+    - main
+
+# Trigger Frontend Child Pipeline
+trigger_frontend:
+  stage: trigger_child_pipelines
+  dependencies:
+    - trigger_infrastructure
+  trigger:
+    include: .gitlab-ci-frontend.yml
+    strategy: depend
+  variables:
+    ENVIRONMENT: production
+    REST_API_URL: $REST_API_URL
+    WEBSOCKET_API_URL: $WEBSOCKET_API_URL
+  only:
+    - main

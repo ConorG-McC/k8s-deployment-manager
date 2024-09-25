@@ -1,0 +1,73 @@
+stages:
+  - setup
+  - build
+  - deploy
+
+variables:
+  AWS_REGION: us-east-1
+  CDK_STACK_NAME: InfrastructureStack
+  CDK_APP_PATH: infrastructure/bin/deployment-manager-infra.ts
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - infrastructure/node_modules/
+
+before_script:
+  # Export AWS Credentials from Parent Pipeline
+  - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+  - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+  - export AWS_DEFAULT_REGION=$AWS_REGION
+
+setup_environment:
+  stage: setup
+  image: node:18
+  script:
+    - echo "Setting up infrastructure environment..."
+    # Any additional setup steps
+  artifacts:
+    expire_in: 1 hour
+
+install_dependencies:
+  stage: build
+  image: node:18
+  script:
+    - cd infrastructure
+    - npm ci
+    - cd ..
+  artifacts:
+    paths:
+      - infrastructure/node_modules/
+    expire_in: 1 hour
+
+build_cdk:
+  stage: build
+  image: node:18
+  script:
+    - cd infrastructure
+    - npm run build
+    - cd ..
+  artifacts:
+    paths:
+      - infrastructure/lib/
+    expire_in: 1 hour
+
+deploy_infrastructure:
+  stage: deploy
+  image: node:18
+  script:
+    - cd infrastructure
+    - cdk synth
+    - cdk deploy --require-approval never
+    - cd ..
+  environment:
+    name: production
+    url: https://your-rest-api-id.execute-api.us-east-1.amazonaws.com/prod/deploy
+  only:
+    - main
+  dependencies:
+    - build_cdk
+  artifacts:
+    paths:
+      - infrastructure/cdk.out/
+    expire_in: 1 hour

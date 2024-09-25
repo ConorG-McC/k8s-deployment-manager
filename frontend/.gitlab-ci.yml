@@ -1,0 +1,119 @@
+stages:
+  - setup
+  - build
+  - deploy
+  - test
+  - undeploy
+
+variables:
+  FRONTEND_BUILD_DIR: frontend/build
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - frontend/node_modules/
+
+setup_environment:
+  stage: setup
+  image: node:18
+  script:
+    - echo "Setting up frontend environment..."
+    # Any additional setup steps if necessary
+  artifacts:
+    expire_in: 1 hour
+
+install_dependencies:
+  stage: build
+  image: node:18
+  script:
+    - cd frontend
+    - npm ci
+    - cd ..
+  artifacts:
+    paths:
+      - frontend/node_modules/
+    expire_in: 1 hour
+
+inject_environment_variables:
+  stage: build
+  image: node:18
+  script:
+    - echo "Injecting environment variables into frontend..."
+    # Assuming REST_API_URL and WEBSOCKET_API_URL are passed as variables from parent pipeline
+    - echo "REACT_APP_REST_API_URL=$REST_API_URL" > frontend/.env.production
+    - echo "REACT_APP_WEBSOCKET_URL=$WEBSOCKET_API_URL" >> frontend/.env.production
+  artifacts:
+    paths:
+      - frontend/.env.production
+    expire_in: 1 hour
+
+build_frontend:
+  stage: build
+  image: node:18
+  script:
+    - cd frontend
+    - npm run build
+    - cd ..
+  dependencies:
+    - inject_environment_variables
+  artifacts:
+    paths:
+      - frontend/build/
+    expire_in: 1 hour
+
+deploy_frontend:
+  stage: deploy
+  image: node:18
+  before_script:
+    # Export AWS Credentials if necessary for deployment
+    - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    - export AWS_DEFAULT_REGION=$AWS_REGION
+  script:
+    - echo "Deploying frontend..."
+    # Example: Deploy to AWS S3
+    - aws s3 sync frontend/build/ s3://your-frontend-bucket/ --delete
+    - aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
+  environment:
+    name: production
+    url: https://your-frontend-domain.com
+  only:
+    - main
+  dependencies:
+    - build_frontend
+  artifacts:
+    paths:
+      - frontend/build/
+    expire_in: 1 hour
+
+test_frontend:
+  stage: test
+  image: node:18
+  script:
+    - echo "Running frontend tests..."
+    - cd frontend
+    - npm run test -- --ci --reporters=default
+    - cd ..
+  dependencies:
+    - build_frontend
+  only:
+    - main
+
+undeploy_frontend:
+  stage: undeploy
+  image: node:18
+  script:
+    - echo "Undeploying frontend..."
+    # Empty the S3 bucket
+    - aws s3 rm s3://your-frontend-bucket/ --recursive
+    # Invalidate CloudFront cache (optional)
+    - aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
+    - echo "Frontend undeployed successfully."
+  environment:
+    name: production
+    action: stop
+  when: manual # Makes the job manual
+  only:
+    - main
+  dependencies:
+    - deploy_frontend
