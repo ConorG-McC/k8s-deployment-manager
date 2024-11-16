@@ -55,6 +55,7 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h2>Deployment Form</h2>
       <label>
         Image Name:
         <input
