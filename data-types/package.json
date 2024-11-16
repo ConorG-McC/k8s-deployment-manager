@@ -1,0 +1,12 @@
+{
+  "name": "data-types",
+  "version": "1.0.0",
+  "main": "dist/types.js",
+  "types": "dist/types.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
+}
