@@ -29,10 +29,6 @@ export class DeploymentManager {
         ? DeploymentState.Completed
         : DeploymentState.Running;
 
-    if (deployment.progress >= 100) {
-      deployment.state = DeploymentState.Completed;
-    }
-
     return deployment;
   }
 }
