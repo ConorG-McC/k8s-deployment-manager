@@ -67,7 +67,12 @@ wss.on('connection', (ws: WebSocket, req) => {
   });
 });
 
-// Start the server
-server.listen(3001, () => {
-  console.log('Server running on http://localhost:3001');
-});
+// Export app and server for testing
+export { app, server };
+
+// Start the server if not in a test environment
+if (require.main === module) {
+  server.listen(3001, () => {
+    console.log('Server running on http://localhost:3001');
+  });
+}
