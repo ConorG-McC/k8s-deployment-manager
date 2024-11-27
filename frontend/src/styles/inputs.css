@@ -1,0 +1,207 @@
+.rounded-button {
+    border-radius: 5px;
+}
+input[type='submit'] {
+    border-radius: 5px !important;
+}
+
+/* Styles consistent for all input types */
+input,
+select {
+    height: 38px;
+    font-size: 1em;
+    padding: 8px 20px;
+    margin: 4px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Button styles */
+.btn,
+button {
+    height: auto;
+    min-width: 80px;
+    padding: 8px 20px 9px 20px;
+    border: 1px solid #dddddd;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover,
+a:hover,
+button:hover,
+select:hover {
+    cursor: pointer;
+}
+
+.gs-btn-primary,
+a:not([href]):not([tabindex]).gs-btn-primary {
+    color: #ffffff;
+    background: #5514b4;
+    border: 1px solid #5514b4;
+}
+
+.gs-btn-primary.purchase-journey {
+    background: #ff80ff;
+    border-color: #ff80ff;
+}
+
+.gs-btn-secondary,
+.gs-btn-secondary.disabled:hover,
+.gs-btn-secondary:disabled:hover {
+    color: #5514b4;
+    background: #ffffff;
+    border: 1px solid #5514b4;
+}
+
+.gs-btn-secondary.purchase-journey,
+.gs-btn-secondary.purchase-journey.disabled:hover,
+.gs-btn-secondary.purchase-journey:disabled:hover {
+    color: #ff80ff;
+    background: #ffffff;
+    border-color: #ff80ff;
+}
+
+.gs-btn-primary:hover,
+.gs-btn-secondary:hover {
+    background: #540e85;
+    color: #ffffff;
+}
+
+.gs-btn-primary.purchase-journey:hover,
+.gs-btn-secondary.purchase-journey:hover {
+    background: #c30d4c;
+}
+
+.disabled,
+:disabled {
+    opacity: 0.6;
+}
+
+.btn.disabled:hover,
+.btn:disabled:hover,
+button.disabled:hover,
+button:disabled:hover,
+select:hover:disabled {
+    cursor: default;
+}
+
+.gs-btn-group {
+    margin-bottom: 20px;
+}
+
+/* Standard input and select styles */
+input,
+select {
+    border: 1px solid #666666;
+    padding: 0px 5px;
+}
+
+select {
+    height: 40px;
+    -webkit-appearance: none; /* Suppress Chrome/Safari's built-in drop-down arrow */
+    -moz-appearance: none; /* Suppress FF's built-in drop-down arrow */
+    text-indent: 1px;
+    text-overflow: '';
+    padding-right: 30px;
+    box-shadow: none;
+    background: #fff
+        url("data:image/svg+xml;utf8,<svg viewBox='0 0 564.44 564.44' width='24' height='24' xmlns='http://www.w3.org/2000/svg'><g><polygon points='282.22,361.61 144.75,224.13 169.69,199.19 282.22,311.72 394.75,199.19 419.7,224.13 ' fill='black'/></g></svg>")
+        no-repeat;
+    background-position: right 5px top 50%;
+}
+
+select::-ms-expand {
+    /* Suppress IE's built-in drop-down arrow */
+    display: none;
+}
+
+select:hover {
+    color: #666666;
+}
+
+button:focus,
+input:focus,
+select:focus {
+    outline: 0;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+}
+
+input[type='checkbox'] {
+    width: 30px;
+    height: 30px;
+}
+
+/*  Formatting for placing labels above inputs instead of beside (BT preferred layout) */
+.input-list-item {
+    display: inline-table;
+}
+
+.input-list-item label {
+    display: block;
+    /* margin-left: 10px; */
+}
+
+/*  Anchor link styles */
+a {
+    text-decoration: none !important;
+    color: #ffffff;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #ffffff38;
+    cursor: pointer;
+    border-bottom: 1px solid #540e85;
+}
+
+a i {
+    vertical-align: middle;
+}
+
+a.purchase-journey {
+    color: #ff80ff;
+}
+
+a.purchase-journey:hover {
+    color: #c30d4c;
+    border-bottom: 1px solid #c30d4c;
+}
+
+a.disabled:hover {
+    cursor: default;
+    border-bottom: none;
+}
+
+.custom-input-icon {
+    white-space: nowrap;
+}
+
+.custom-input-icon input {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.custom-input-icon .icon {
+    border: 1px solid #666666;
+    vertical-align: middle;
+    font-size: 21pt;
+    padding: 5px;
+    display: inline-block;
+}
+
+.custom-input-icon.icon-after input,
+.custom-input-icon.icon-before .icon {
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    margin-right: 0;
+}
+
+.custom-input-icon.icon-before input,
+.custom-input-icon.icon-after .icon {
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    margin-left: 0;
+}
