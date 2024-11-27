@@ -5,18 +5,15 @@ import cors from 'cors';
 import { DeploymentManager } from './services/deploymentManager';
 import { DeploymentDetails } from 'data-types';
 
-// Create Express app and HTTP server
 const app = express();
 const server = new HttpServer(app);
 const wss = new WebSocketServer({ server });
 
 app.use(cors());
-app.use(express.json()); // Ensures req.body is parsed
+app.use(express.json());
 
-// Instantiate DeploymentManager
 const deploymentManager = new DeploymentManager();
 
-// Define the POST /deploy endpoint
 app.post('/deploy', (req: Request, res: Response): void => {
   const { imageName, serviceName, port, replicas }: DeploymentDetails =
     req.body;
@@ -32,7 +29,6 @@ app.post('/deploy', (req: Request, res: Response): void => {
   res.json({ deploymentId });
 });
 
-// WebSocket handling for deployment progress
 wss.on('connection', (ws: WebSocket, req) => {
   const deploymentId = req.url?.substring(1);
 
@@ -67,7 +63,6 @@ wss.on('connection', (ws: WebSocket, req) => {
   });
 });
 
-// Export app and server for testing
 export { app, server };
 
 // Start the server if not in a test environment

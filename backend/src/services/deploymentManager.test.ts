@@ -1,7 +1,6 @@
 import { DeploymentManager } from './deploymentManager';
 import { DeploymentState } from 'data-types';
 
-// Constants for test values
 const TEST_IMAGE_NAME = 'test-image';
 const NON_EXISTENT_ID = 'non-existent-id';
 
