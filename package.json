@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "workspaces": [
+    "data-types",
+    "backend",
+    "frontend",
+    "infrastructure"
+  ]
+}
