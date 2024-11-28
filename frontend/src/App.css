@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+/*  */
+/* Additional styling rules for handling of page formatting */
+/*  */
+
+/* Set up flex rules for the parent form container elemnent */
+.form-primary {
+  display: flex;
+  flex-direction: column;
+  width:100%;
+}
+
+.form-line-item{
+  margin: 10px auto;
+}
+
+.form-line-item input{
+  display: block;
+  min-width: 300px;
+}
+
+/* Offset labels to bring them in line with edge of input box */
+.form-line-item label{
+  margin-left: 5px;
+}

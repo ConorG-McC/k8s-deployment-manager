@@ -1,0 +1,64 @@
+/* Import core BT theme pack containing colours, typography and iconography settings */
+@import url('./bt-theme-index.css');
+
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-width: 425px;
+}
+
+section,
+.header-title {
+    margin: auto;
+    padding: 2em;
+}
+
+.iframe-container {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.fullsize iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    box-shadow: none;
+}
+
+/* Make any page element interactive on hover/focus states by using 'clickable' class */
+.clickable-content {
+    border: 2px solid #dddddd;
+}
+
+.clickable-icon {
+    cursor: pointer;
+}
+
+.clickable-icon:hover {
+    color: #5514b4;
+}
+
+.clickable-content:hover,
+.clickable-content.selected {
+    cursor: pointer;
+    border: 2px solid #5514b4;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.clickable-content.selected {
+    background: rgba(100, 0, 170, 0.1);
+}
+
+
+@media only screen and (max-width: 767px) {
+    section {
+         margin-top: 60px;
+    }
+
+    .content-card,
+    .frame-container {
+        margin: 20px 0;
+    }
+}

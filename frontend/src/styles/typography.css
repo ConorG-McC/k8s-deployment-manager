@@ -1,0 +1,112 @@
+/* BT font defintions */
+@font-face {
+  font-family: 'BTFont';
+  src: url('fonts/BTCurve_W_Rg.woff')
+}
+@font-face {
+  font-family: 'BTBold';
+  src: url('fonts/BTCurve_W_Bd.woff')
+}
+@font-face {
+  font-family: 'BTLight';
+  src: url('fonts/BTCurve_W_Headline.woff')
+}
+.BTBold {
+  font-family: 'BTBold', sans-serif;
+}
+.BTLight {
+  font-family: 'BTLight', sans-serif;
+}
+
+/* BT font assignment to elements */
+h1, h2, h3, .light-font {
+  font-family: 'BTLight', 'Calibri', sans-serif;
+  font-weight: normal;
+}
+
+body, h4, h5, h6,
+p, table, li, input,
+a, button, select,
+legend, label, .regular-font {
+  font-family: 'BTFont', 'Calibri', sans-serif;
+  font-weight: normal;
+}
+
+b, strong, thead, th, .bold-font {
+  font-family: 'BTBold', 'Calibri', sans-serif;
+  font-weight: normal;
+}
+
+/* Sizing and line height assignments */
+body { font-size: 1em; line-height: 1.312em; }
+.notes { font-size: 0.875em; line-height: 1.357em; }
+
+@media only screen and (max-width : 767px) {
+  h1,h2,h3,h4,h5,h6,legend { margin-bottom: 20px; }
+  h1 { font-size: 2em; line-height: 1.125em; }
+  h2 { font-size: 1.625em; line-height: 1.153em; }
+  h3  { font-size: 1.375em; line-height: 1.181em; }
+  h4 { font-size: 1.25em; line-height: 1.277em; }
+}
+
+@media only screen and (min-width : 768px) and (max-width : 1199px) {
+  h1,h2,h3,h4,h5,h6,legend { margin-bottom: 30px; }
+  h1  { font-size: 2.5em; line-height: 1.1em; }
+  h2 { font-size: 2em; line-height: 1.125em; }
+  h3  { font-size: 1.5em; line-height: 1.166em; }
+  h4 { font-size: 1.25em; line-height: 1.25em; }
+}
+
+@media only screen and (min-width : 1200px) {
+  h1,h2,h3,h4,h5,h6,legend { margin-bottom: 30px; }
+  h1  { font-size: 3em; line-height: 1.062em; }
+  h2 { font-size: 2.25em; line-height: 1.181em; }
+  h3  { font-size: 1.75em; line-height: 1.142em; }
+  h4 { font-size: 1.25em; line-height: 1.25em; }
+}
+
+p { margin-bottom: 20px; }
+
+.divider label, label.enlarged-title {
+  font-size: 28px;
+  font-family: 'BTLight', 'Calibri', sans-serif;
+  font-weight: normal;
+  padding-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  line-height: initial;
+}
+
+div.bt-list-container{
+  display: flex;
+  padding-left: 40px;
+  margin: 1em 0;
+}
+
+/* Colours as per 2018 BT colour pallete */
+.bt-purple { color: #5514b4; }
+.bt-pink { color: #ff80ff; }
+.bt-blue { color: #1ec8e6; }
+.red { color: #c81e6e; }
+.green { color: #43b072; }
+.yellow { color: #edf23b; }
+.dark-grey { color: #333333; }
+.medium-grey { color: #666666; }
+.light-grey { color: #dddddd; }
+.white { color: #ffffff; }
+
+.bg-bt-purple { background-color: #5514b4; }
+.bg-bt-pink { background-color: #ff80ff; }
+.bg-bt-blue { background-color: #1ec8e6; }
+.bg-red { background-color: #c81e6e; }
+.bg-green { background-color: #43b072; }
+.bg-yellow { background-color: #edf23b; }
+.bg-dark-grey { background-color: #333333; }
+.bg-medium-grey { background-color: #666666; }
+.bg-light-grey { background-color: #dddddd; }
+.bg-white { background-color: #ffffff; }
