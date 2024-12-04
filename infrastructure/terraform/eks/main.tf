@@ -1,5 +1,5 @@
 data "aws_ssm_parameter" "dcp_hybrid_vpc" {
-  name = "/Conor-Dev/Networking/VpcId"
+  name = "/Conor-Dev/Networking/VpcID"
 }
 
 data "aws_ssm_parameter" "private_subnet_a" {
@@ -48,5 +48,6 @@ module "eks_cluster" {
     Environment = var.environment
     Platform    = "dev"
   }
-  private_subnets = local.private_subnets
+  private_subnets      = local.private_subnets
+  public_access_cidrs  = var.public_access_cidrs
 }

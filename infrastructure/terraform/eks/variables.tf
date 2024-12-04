@@ -81,3 +81,9 @@ variable "nodegroup_tags" {
   type        = map(any)
   description = "Tags to be applied to Cluster node group"
 }
+
+variable "public_access_cidrs" {
+  description = "List of CIDR blocks to allow public access to the EKS cluster"
+  type        = list(string)
+  
+}

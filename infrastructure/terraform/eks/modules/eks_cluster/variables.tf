@@ -92,6 +92,11 @@ variable "nodegroup_tags" {
   description = "Tags to be applied to Cluster node group"
 }
 
+variable "public_access_cidrs" {
+  type        = list(string)
+  description = "CIDR blocks to allow public access to the EKS cluster"
+}
+
 locals {
   // Common variables
   environment         = lower(var.environment)
@@ -111,6 +116,7 @@ locals {
   min_size       = var.min_size
   max_size       = var.max_size
   nodegroup_tags = var.nodegroup_tags
+  public_access_cidrs = var.public_access_cidrs
   common_tags = {
     Application = "ESN PoC"
     Project     = "EKS Build"

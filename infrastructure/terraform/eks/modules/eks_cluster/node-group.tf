@@ -31,7 +31,6 @@ resource "aws_eks_node_group" "eks_poc_node_group" {
 
 resource "aws_iam_role" "eks_poc_node_group_iam_role" {
   name                 = "${local.cluster_name}-${var.branch_name}_node_group_iam_role"
-  permissions_boundary = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/DcpPermissionsBoundary"
 
   assume_role_policy = jsonencode({
     Statement = [{
