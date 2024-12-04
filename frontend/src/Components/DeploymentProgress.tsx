@@ -55,11 +55,27 @@ const DeploymentProgress: React.FC<DeploymentProgressProps> = ({
   }, [state, webSocket]);
 
   return (
-    <div>
-      <h2>Deployment ID: {deploymentId}</h2>
+    <section>
+    <fieldset className="flex-container">
+      <legend>
+        <h2>Deployment Status</h2>
+      </legend>
+      <div className="form-primary">
+        <div className={(progress < 100) ? 'btgs-wave-loader-animation' : ''}>
+          <div className={(progress < 100) ? 'btgs-wave-loader-animation-inner' : ''}>
+            <span id="purple-dot"></span>
+            <span id="pink-dot"></span>
+            <span id="blue-dot"></span>
+          </div>
+        </div>
+      <h3>Deployment ID: {deploymentId}</h3>
       <p>State: {state}</p>
       <p>Progress: {progress}%</p>
-    </div>
+      </div>
+
+    </fieldset>
+    </section>
+
   );
 };
 
