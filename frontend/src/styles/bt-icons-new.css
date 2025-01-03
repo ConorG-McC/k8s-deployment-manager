@@ -1,0 +1,2584 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?9nym0c');
+  src:  url('fonts/icomoon.eot?9nym0c#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?9nym0c') format('truetype'),
+    url('fonts/icomoon.woff?9nym0c') format('woff'),
+    url('fonts/icomoon.svg?9nym0c#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-American-Football:before {
+  content: "\e900";
+  color: #5514b4;
+}
+.icon-arrow-right-circle:before {
+  content: "\e901";
+  color: #5514b4;
+}
+.icon-arrow-right-circle1:before {
+  content: "\e902";
+  color: #5514b4;
+}
+.icon-arrow-right:before {
+  content: "\e903";
+  color: #5514b4;
+}
+.icon-arrow-right1:before {
+  content: "\e904";
+  color: #5514b4;
+}
+.icon-Athletics:before {
+  content: "\e905";
+  color: #5514b4;
+}
+.icon-Ausie-Rules:before {
+  content: "\e906";
+  color: #5514b4;
+}
+.icon-Baseball:before {
+  content: "\e907";
+  color: #5514b4;
+}
+.icon-basket:before {
+  content: "\e908";
+  color: #5514b4;
+}
+.icon-basket1:before {
+  content: "\e909";
+  color: #5514b4;
+}
+.icon-Basketball:before {
+  content: "\e90a";
+  color: #5514b4;
+}
+.icon-Boxing:before {
+  content: "\e90b";
+  color: #5514b4;
+}
+.icon-BT_icon_Drone_Indigo_Outline:before {
+  content: "\e90c";
+}
+.icon-BT_Icons_Speaker_Low_Volume:before {
+  content: "\e90d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Speed_Faster_Fill:before {
+  content: "\e90e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Speed_Faster:before {
+  content: "\e90f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Speed_Fastest_Fill:before {
+  content: "\e910";
+  color: #5514b4;
+}
+.icon-BT_Icons_Speed_Fastest:before {
+  content: "\e911";
+  color: #5514b4;
+}
+.icon-BT_Icons_Speed_Slow_Fill:before {
+  content: "\e912";
+  color: #5514b4;
+}
+.icon-BT_Icons_Speed_Slow:before {
+  content: "\e913";
+  color: #5514b4;
+}
+.icon-BT_Icons_Sport_Football_Fill:before {
+  content: "\e914";
+  color: #5514b4;
+}
+.icon-BT_Icons_Sport_Football:before {
+  content: "\e915";
+  color: #5514b4;
+}
+.icon-BT_Icons_Stop-Fill:before {
+  content: "\e916";
+  color: #5514b4;
+}
+.icon-BT_Icons_Stop_Alt_Fill:before {
+  content: "\e917";
+  color: #5514b4;
+}
+.icon-BT_Icons_Stop_Alt:before {
+  content: "\e918";
+  color: #5514b4;
+}
+.icon-BT_Icons_Stop:before {
+  content: "\e919";
+  color: #5514b4;
+}
+.icon-BT_Icons_Suitcase_Fill:before {
+  content: "\e91a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Suitcase:before {
+  content: "\e91b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Sun_Fill:before {
+  content: "\e91c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Sun:before {
+  content: "\e91d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Switch_Fill:before {
+  content: "\e91e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Switch:before {
+  content: "\e91f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tablet_Fill:before {
+  content: "\e920";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tablet_with_Keyboard_Fill:before {
+  content: "\e921";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tablet_with_Keyboard:before {
+  content: "\e922";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tablet:before {
+  content: "\e923";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tag_Fill:before {
+  content: "\e924";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tag:before {
+  content: "\e925";
+  color: #5514b4;
+}
+.icon-BT_Icons_Taxonomy_Fill:before {
+  content: "\e926";
+  color: #5514b4;
+}
+.icon-BT_Icons_Taxonomy:before {
+  content: "\e927";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tech_Bar_Fill:before {
+  content: "\e928";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tech_Bar:before {
+  content: "\e929";
+  color: #5514b4;
+}
+.icon-BT_Icons_Telemark_Fill:before {
+  content: "\e92a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Telemark:before {
+  content: "\e92b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Text_And_Table_Fill:before {
+  content: "\e92c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Text_And_Table:before {
+  content: "\e92d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Thumbs_Down_Fill:before {
+  content: "\e92e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Thumbs_Down:before {
+  content: "\e92f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tick_Alt_2px_Fill:before {
+  content: "\e930";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tick_Alt_2px:before {
+  content: "\e931";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tick_Fill:before {
+  content: "\e932";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tick_Variant_Fill:before {
+  content: "\e933";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tick_Variant:before {
+  content: "\e934";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tick:before {
+  content: "\e935";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tree_1_Fill:before {
+  content: "\e936";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tree_1:before {
+  content: "\e937";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tree_2_Fill:before {
+  content: "\e938";
+  color: #5514b4;
+}
+.icon-BT_Icons_Tree_2:before {
+  content: "\e939";
+  color: #5514b4;
+}
+.icon-BT_Icons_Trophy_Fill:before {
+  content: "\e93a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Trophy:before {
+  content: "\e93b";
+  color: #5514b4;
+}
+.icon-BT_Icons_TV_and_Hub_and-Phone_Fill:before {
+  content: "\e93c";
+  color: #5514b4;
+}
+.icon-BT_Icons_TV_and_Hub_and-Phone:before {
+  content: "\e93d";
+  color: #5514b4;
+}
+.icon-BT_Icons_TV_and_Hub_Fill:before {
+  content: "\e93e";
+  color: #5514b4;
+}
+.icon-BT_Icons_TV_and_Hub:before {
+  content: "\e93f";
+  color: #5514b4;
+}
+.icon-BT_Icons_TV_Arial_Fill:before {
+  content: "\e940";
+  color: #5514b4;
+}
+.icon-BT_Icons_TV_Arial:before {
+  content: "\e941";
+  color: #5514b4;
+}
+.icon-BT_Icons_TV_Fill:before {
+  content: "\e942";
+  color: #5514b4;
+}
+.icon-BT_Icons_TV:before {
+  content: "\e943";
+  color: #5514b4;
+}
+.icon-BT_Icons_UK_Fill:before {
+  content: "\e944";
+  color: #5514b4;
+}
+.icon-BT_Icons_UK:before {
+  content: "\e945";
+  color: #5514b4;
+}
+.icon-BT_Icons_Unlocked_Fill:before {
+  content: "\e946";
+  color: #5514b4;
+}
+.icon-BT_Icons_Unlocked:before {
+  content: "\e947";
+  color: #5514b4;
+}
+.icon-BT_Icons_USB_Fill:before {
+  content: "\e948";
+  color: #5514b4;
+}
+.icon-BT_Icons_USB:before {
+  content: "\e949";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_Add_Fill:before {
+  content: "\e94a";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_Add:before {
+  content: "\e94b";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_Cloud_Fill:before {
+  content: "\e94c";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_Cloud:before {
+  content: "\e94d";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_Duplicate_Profile_Fill:before {
+  content: "\e94e";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_Duplicate_Profile:before {
+  content: "\e94f";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_Groups_Fill:before {
+  content: "\e950";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_Groups:before {
+  content: "\e951";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_Parent_and_Child_Fill:before {
+  content: "\e952";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_Parent_and_Child:before {
+  content: "\e953";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_With_Questionmark_Fill:before {
+  content: "\e954";
+  color: #5514b4;
+}
+.icon-BT_Icons_User_With_Questionmark:before {
+  content: "\e955";
+  color: #5514b4;
+}
+.icon-BT_Icons_View_Fill:before {
+  content: "\e956";
+  color: #5514b4;
+}
+.icon-BT_Icons_View:before {
+  content: "\e957";
+  color: #5514b4;
+}
+.icon-BT_Icons_Virus_Fill:before {
+  content: "\e958";
+  color: #5514b4;
+}
+.icon-BT_Icons_Virus:before {
+  content: "\e959";
+  color: #5514b4;
+}
+.icon-BT_Icons_Whole_Home_Wifi_Fill:before {
+  content: "\e95a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Whole_Home_Wifi:before {
+  content: "\e95b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Wizard_Fill:before {
+  content: "\e95c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Wizard:before {
+  content: "\e95d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Workstation_Fill:before {
+  content: "\e95e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Workstation:before {
+  content: "\e95f";
+  color: #5514b4;
+}
+.icon-calendar-tick:before {
+  content: "\e960";
+  color: #5514b4;
+}
+.icon-calendar-tick1:before {
+  content: "\e961";
+  color: #5514b4;
+}
+.icon-chat-typing:before {
+  content: "\e962";
+  color: #5514b4;
+}
+.icon-chat-typing1:before {
+  content: "\e963";
+  color: #5514b4;
+}
+.icon-cloud-upload:before {
+  content: "\e964";
+  color: #5514b4;
+}
+.icon-cloud-upload1:before {
+  content: "\e965";
+  color: #5514b4;
+}
+.icon-compass:before {
+  content: "\e966";
+  color: #5514b4;
+}
+.icon-compass1:before {
+  content: "\e967";
+  color: #5514b4;
+}
+.icon-contact-details:before {
+  content: "\e968";
+  color: #5514b4;
+}
+.icon-contact-details1:before {
+  content: "\e969";
+  color: #5514b4;
+}
+.icon-credit-card:before {
+  content: "\e96a";
+  color: #5514b4;
+}
+.icon-credit-card1:before {
+  content: "\e96b";
+  color: #5514b4;
+}
+.icon-Cricket:before {
+  content: "\e96c";
+  color: #5514b4;
+}
+.icon-Cycling:before {
+  content: "\e96d";
+  color: #5514b4;
+}
+.icon-Darts:before {
+  content: "\e96e";
+  color: #5514b4;
+}
+.icon-dashboard:before {
+  content: "\e96f";
+  color: #5514b4;
+}
+.icon-dashboard1:before {
+  content: "\e970";
+  color: #5514b4;
+}
+.icon-deposit:before {
+  content: "\e971";
+  color: #5514b4;
+}
+.icon-deposit1:before {
+  content: "\e972";
+  color: #5514b4;
+}
+.icon-desk-phone:before {
+  content: "\e973";
+  color: #5514b4;
+}
+.icon-desk-phone1:before {
+  content: "\e974";
+  color: #5514b4;
+}
+.icon-Diving:before {
+  content: "\e975";
+  color: #5514b4;
+}
+.icon-document-pencil:before {
+  content: "\e976";
+  color: #5514b4;
+}
+.icon-document-pencil1:before {
+  content: "\e977";
+  color: #5514b4;
+}
+.icon-document:before {
+  content: "\e978";
+  color: #5514b4;
+}
+.icon-document1:before {
+  content: "\e979";
+  color: #5514b4;
+}
+.icon-Equestrian:before {
+  content: "\e97a";
+  color: #5514b4;
+}
+.icon-Esports:before {
+  content: "\e97b";
+  color: #5514b4;
+}
+.icon-eye:before {
+  content: "\e97c";
+  color: #5514b4;
+}
+.icon-eye1:before {
+  content: "\e97d";
+  color: #5514b4;
+}
+.icon-face-happy:before {
+  content: "\e97e";
+  color: #5514b4;
+}
+.icon-face-happy1:before {
+  content: "\e97f";
+  color: #5514b4;
+}
+.icon-face-neutral:before {
+  content: "\e980";
+  color: #5514b4;
+}
+.icon-face-neutral1:before {
+  content: "\e981";
+  color: #5514b4;
+}
+.icon-face-sad:before {
+  content: "\e982";
+  color: #5514b4;
+}
+.icon-face-sad1:before {
+  content: "\e983";
+  color: #5514b4;
+}
+.icon-face-very-happy:before {
+  content: "\e984";
+  color: #5514b4;
+}
+.icon-face-very-happy1:before {
+  content: "\e985";
+  color: #5514b4;
+}
+.icon-first-aid:before {
+  content: "\e986";
+  color: #5514b4;
+}
+.icon-first-aid1:before {
+  content: "\e987";
+  color: #5514b4;
+}
+.icon-Fishing:before {
+  content: "\e988";
+  color: #5514b4;
+}
+.icon-Football:before {
+  content: "\e989";
+  color: #5514b4;
+}
+.icon-Formular-1:before {
+  content: "\e98a";
+  color: #5514b4;
+}
+.icon-globe:before {
+  content: "\e98b";
+  color: #5514b4;
+}
+.icon-globe1:before {
+  content: "\e98c";
+  color: #5514b4;
+}
+.icon-Golf:before {
+  content: "\e98d";
+  color: #5514b4;
+}
+.icon-graph-bar-chart:before {
+  content: "\e98e";
+  color: #5514b4;
+}
+.icon-graph-bar-chart1:before {
+  content: "\e98f";
+  color: #5514b4;
+}
+.icon-Gymnastic:before {
+  content: "\e990";
+  color: #5514b4;
+}
+.icon-headset:before {
+  content: "\e991";
+  color: #5514b4;
+}
+.icon-headset1:before {
+  content: "\e992";
+  color: #5514b4;
+}
+.icon-Hockey:before {
+  content: "\e993";
+  color: #5514b4;
+}
+.icon-home:before {
+  content: "\e994";
+  color: #5514b4;
+}
+.icon-home1:before {
+  content: "\e995";
+  color: #5514b4;
+}
+.icon-Horse-Racing:before {
+  content: "\e996";
+  color: #5514b4;
+}
+.icon-info:before {
+  content: "\e997";
+  color: #5514b4;
+}
+.icon-info1:before {
+  content: "\e998";
+  color: #5514b4;
+}
+.icon-jigsaw:before {
+  content: "\e999";
+  color: #5514b4;
+}
+.icon-jigsaw1:before {
+  content: "\e99a";
+  color: #5514b4;
+}
+.icon-key:before {
+  content: "\e99b";
+  color: #5514b4;
+}
+.icon-key1:before {
+  content: "\e99c";
+  color: #5514b4;
+}
+.icon-Kick-Off:before {
+  content: "\e99d";
+  color: #5514b4;
+}
+.icon-laptop-detection:before {
+  content: "\e99e";
+  color: #5514b4;
+}
+.icon-laptop-detection1:before {
+  content: "\e99f";
+  color: #5514b4;
+}
+.icon-laptop-mobile:before {
+  content: "\e9a0";
+  color: #5514b4;
+}
+.icon-laptop-mobile1:before {
+  content: "\e9a1";
+  color: #5514b4;
+}
+.icon-lightbulb:before {
+  content: "\e9a2";
+  color: #5514b4;
+}
+.icon-lightbulb1:before {
+  content: "\e9a3";
+  color: #5514b4;
+}
+.icon-link:before {
+  content: "\e9a4";
+  color: #5514b4;
+}
+.icon-link1:before {
+  content: "\e9a5";
+  color: #5514b4;
+}
+.icon-literacy-numeracy:before {
+  content: "\e9a6";
+  color: #5514b4;
+}
+.icon-literacy-numeracy1:before {
+  content: "\e9a7";
+  color: #5514b4;
+}
+.icon-location:before {
+  content: "\e9a8";
+  color: #5514b4;
+}
+.icon-location1:before {
+  content: "\e9a9";
+  color: #5514b4;
+}
+.icon-lock:before {
+  content: "\e9aa";
+  color: #5514b4;
+}
+.icon-lock1:before {
+  content: "\e9ab";
+  color: #5514b4;
+}
+.icon-mail:before {
+  content: "\e9ac";
+  color: #5514b4;
+}
+.icon-mail1:before {
+  content: "\e9ad";
+  color: #5514b4;
+}
+.icon-mobile-hub:before {
+  content: "\e9ae";
+  color: #5514b4;
+}
+.icon-mobile-hub1:before {
+  content: "\e9af";
+  color: #5514b4;
+}
+.icon-mobile:before {
+  content: "\e9b0";
+  color: #5514b4;
+}
+.icon-mobile1:before {
+  content: "\e9b1";
+  color: #5514b4;
+}
+.icon-monitor:before {
+  content: "\e9b2";
+  color: #5514b4;
+}
+.icon-monitor1:before {
+  content: "\e9b3";
+  color: #5514b4;
+}
+.icon-MotoGP:before {
+  content: "\e9b4";
+  color: #5514b4;
+}
+.icon-Motosport:before {
+  content: "\e9b5";
+  color: #5514b4;
+}
+.icon-notifications:before {
+  content: "\e9b6";
+  color: #5514b4;
+}
+.icon-notifications1:before {
+  content: "\e9b7";
+  color: #5514b4;
+}
+.icon-pencil:before {
+  content: "\e9b8";
+  color: #5514b4;
+}
+.icon-pencil1:before {
+  content: "\e9b9";
+  color: #5514b4;
+}
+.icon-phone:before {
+  content: "\e9ba";
+  color: #5514b4;
+}
+.icon-phone1:before {
+  content: "\e9bb";
+  color: #5514b4;
+}
+.icon-picture:before {
+  content: "\e9bc";
+  color: #5514b4;
+}
+.icon-picture1:before {
+  content: "\e9bd";
+  color: #5514b4;
+}
+.icon-play-circle:before {
+  content: "\e9be";
+  color: #5514b4;
+}
+.icon-play-circle1:before {
+  content: "\e9bf";
+  color: #5514b4;
+}
+.icon-Poker:before {
+  content: "\e9c0";
+  color: #5514b4;
+}
+.icon-power:before {
+  content: "\e9c1";
+  color: #5514b4;
+}
+.icon-power1:before {
+  content: "\e9c2";
+  color: #5514b4;
+}
+.icon-printer:before {
+  content: "\e9c3";
+  color: #5514b4;
+}
+.icon-printer1:before {
+  content: "\e9c4";
+  color: #5514b4;
+}
+.icon-question-circle:before {
+  content: "\e9c5";
+  color: #5514b4;
+}
+.icon-question-circle1:before {
+  content: "\e9c6";
+  color: #5514b4;
+}
+.icon-refresh:before {
+  content: "\e9c7";
+  color: #5514b4;
+}
+.icon-refresh1:before {
+  content: "\e9c8";
+  color: #5514b4;
+}
+.icon-Rowing:before {
+  content: "\e9c9";
+  color: #5514b4;
+}
+.icon-Rugby-League:before {
+  content: "\e9ca";
+  color: #5514b4;
+}
+.icon-Rugby-Union:before {
+  content: "\e9cb";
+  color: #5514b4;
+}
+.icon-Sailing:before {
+  content: "\e9cc";
+  color: #5514b4;
+}
+.icon-search:before {
+  content: "\e9cd";
+  color: #5514b4;
+}
+.icon-search1:before {
+  content: "\e9ce";
+  color: #5514b4;
+}
+.icon-settings-alt:before {
+  content: "\e9cf";
+  color: #5514b4;
+}
+.icon-settings-alt1:before {
+  content: "\e9d0";
+  color: #5514b4;
+}
+.icon-settings:before {
+  content: "\e9d1";
+  color: #5514b4;
+}
+.icon-settings1:before {
+  content: "\e9d2";
+  color: #5514b4;
+}
+.icon-shield-tick:before {
+  content: "\e9d3";
+  color: #5514b4;
+}
+.icon-shield-tick1:before {
+  content: "\e9d4";
+  color: #5514b4;
+}
+.icon-signal:before {
+  content: "\e9d5";
+  color: #5514b4;
+}
+.icon-signal1:before {
+  content: "\e9d6";
+  color: #5514b4;
+}
+.icon-sim:before {
+  content: "\e9d7";
+  color: #5514b4;
+}
+.icon-sim1:before {
+  content: "\e9d8";
+  color: #5514b4;
+}
+.icon-Snooker:before {
+  content: "\e9d9";
+  color: #5514b4;
+}
+.icon-Snowboarding:before {
+  content: "\e9da";
+  color: #5514b4;
+}
+.icon-spanner:before {
+  content: "\e9db";
+  color: #5514b4;
+}
+.icon-spanner1:before {
+  content: "\e9dc";
+  color: #5514b4;
+}
+.icon-speaker-volume-full:before {
+  content: "\e9dd";
+  color: #5514b4;
+}
+.icon-speaker-volume-full1:before {
+  content: "\e9de";
+  color: #5514b4;
+}
+.icon-Speedway:before {
+  content: "\e9df";
+  color: #5514b4;
+}
+.icon-Squash:before {
+  content: "\e9e0";
+  color: #5514b4;
+}
+.icon-star:before {
+  content: "\e9e1";
+  color: #5514b4;
+}
+.icon-star1:before {
+  content: "\e9e2";
+  color: #5514b4;
+}
+.icon-Stop-Watch:before {
+  content: "\e9e3";
+  color: #5514b4;
+}
+.icon-Substitute-Off:before {
+  content: "\e9e4";
+  color: #5514b4;
+}
+.icon-Substitute-On:before {
+  content: "\e9e5";
+  color: #5514b4;
+}
+.icon-Swimming:before {
+  content: "\e9e6";
+  color: #5514b4;
+}
+.icon-Tennis:before {
+  content: "\e9e7";
+  color: #5514b4;
+}
+.icon-thumbs-up:before {
+  content: "\e9e8";
+  color: #5514b4;
+}
+.icon-thumbs-up1:before {
+  content: "\e9e9";
+  color: #5514b4;
+}
+.icon-user:before {
+  content: "\e9ea";
+  color: #5514b4;
+}
+.icon-user1:before {
+  content: "\e9eb";
+  color: #5514b4;
+}
+.icon-van:before {
+  content: "\e9ec";
+  color: #5514b4;
+}
+.icon-van1:before {
+  content: "\e9ed";
+  color: #5514b4;
+}
+.icon-wifi:before {
+  content: "\e9ee";
+  color: #5514b4;
+}
+.icon-wifi1:before {
+  content: "\e9ef";
+  color: #5514b4;
+}
+.icon-BT_Icons_Dial_Pad:before {
+  content: "\e9f0";
+  color: #5514b4;
+}
+.icon-BT_Icons_Dialled_Number_Destination_Fill:before {
+  content: "\e9f1";
+  color: #5514b4;
+}
+.icon-BT_Icons_Dialled_Number_Destination:before {
+  content: "\e9f2";
+  color: #5514b4;
+}
+.icon-BT_Icons_Digital_Collaboration_Fill:before {
+  content: "\e9f3";
+  color: #5514b4;
+}
+.icon-BT_Icons_Digital_Collaboration:before {
+  content: "\e9f4";
+  color: #5514b4;
+}
+.icon-BT_Icons_Disability_Fill:before {
+  content: "\e9f5";
+  color: #5514b4;
+}
+.icon-BT_Icons_Disability:before {
+  content: "\e9f6";
+  color: #5514b4;
+}
+.icon-BT_Icons_Discount_Fill:before {
+  content: "\e9f7";
+  color: #5514b4;
+}
+.icon-BT_Icons_Discount:before {
+  content: "\e9f8";
+  color: #5514b4;
+}
+.icon-BT_Icons_Divert_On_Busy_Fill:before {
+  content: "\e9f9";
+  color: #5514b4;
+}
+.icon-BT_Icons_Divert_On_Busy:before {
+  content: "\e9fa";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_Article_Fill:before {
+  content: "\e9fb";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_Article:before {
+  content: "\e9fc";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_Bills_Fill:before {
+  content: "\e9fd";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_Bills:before {
+  content: "\e9fe";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_Download_Fill:before {
+  content: "\e9ff";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_Download:before {
+  content: "\ea00";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_PDF_Fill:before {
+  content: "\ea01";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_PDF:before {
+  content: "\ea02";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_With_Copy_Crossed_Out_Fill:before {
+  content: "\ea03";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_With_Copy_Crossed_Out:before {
+  content: "\ea04";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_With_Copy_Fill:before {
+  content: "\ea05";
+  color: #5514b4;
+}
+.icon-BT_Icons_Document_With_Copy:before {
+  content: "\ea06";
+  color: #5514b4;
+}
+.icon-BT_Icons_Dynamic_Collaboration_Fill:before {
+  content: "\ea07";
+  color: #5514b4;
+}
+.icon-BT_Icons_Dynamic_Collaboration:before {
+  content: "\ea08";
+  color: #5514b4;
+}
+.icon-BT_Icons_Education_Fill:before {
+  content: "\ea09";
+  color: #5514b4;
+}
+.icon-BT_Icons_Education:before {
+  content: "\ea0a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Email_Read_Fill:before {
+  content: "\ea0b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Email_Read:before {
+  content: "\ea0c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Email_Unread_Fill:before {
+  content: "\ea0d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Email_Unread:before {
+  content: "\ea0e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Engaged_Fill:before {
+  content: "\ea0f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Engaged:before {
+  content: "\ea10";
+  color: #5514b4;
+}
+.icon-BT_Icons_Ethernet-Fill:before {
+  content: "\ea11";
+  color: #5514b4;
+}
+.icon-BT_Icons_Ethernet:before {
+  content: "\ea12";
+  color: #5514b4;
+}
+.icon-BT_Icons_Folder_Fill:before {
+  content: "\ea13";
+  color: #5514b4;
+}
+.icon-BT_Icons_Folder:before {
+  content: "\ea14";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gaming_Fill:before {
+  content: "\ea15";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gaming:before {
+  content: "\ea16";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gender_Female_And_Male_Fill:before {
+  content: "\ea17";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gender_Female_And_Male:before {
+  content: "\ea18";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gender_Female_Fill:before {
+  content: "\ea19";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gender_Female:before {
+  content: "\ea1a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gender_Male_Fill:before {
+  content: "\ea1b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gender_Male:before {
+  content: "\ea1c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gender_Neutral_Fill:before {
+  content: "\ea1d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gender_Neutral:before {
+  content: "\ea1e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gift_Fill:before {
+  content: "\ea1f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gift:before {
+  content: "\ea20";
+  color: #5514b4;
+}
+.icon-BT_Icons_Global_Connectivity_Fill:before {
+  content: "\ea21";
+  color: #5514b4;
+}
+.icon-BT_Icons_Global_Connectivity:before {
+  content: "\ea22";
+  color: #5514b4;
+}
+.icon-BT_Icons_Glossary_Fill:before {
+  content: "\ea23";
+  color: #5514b4;
+}
+.icon-BT_Icons_Glossary:before {
+  content: "\ea24";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gondola_Fill:before {
+  content: "\ea25";
+  color: #5514b4;
+}
+.icon-BT_Icons_Gondola:before {
+  content: "\ea26";
+  color: #5514b4;
+}
+.icon-BT_Icons_Graph_Bar_And_Plot_Fill:before {
+  content: "\ea27";
+  color: #5514b4;
+}
+.icon-BT_Icons_Graph_Bar_And_Plot:before {
+  content: "\ea28";
+  color: #5514b4;
+}
+.icon-BT_Icons_Graph_Down_Fill:before {
+  content: "\ea29";
+  color: #5514b4;
+}
+.icon-BT_Icons_Graph_Down:before {
+  content: "\ea2a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Graph_Up_And_Down_Fill:before {
+  content: "\ea2b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Graph_Up_And_Down:before {
+  content: "\ea2c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Graph_Up_Fill:before {
+  content: "\ea2d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Graph_Up:before {
+  content: "\ea2e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Header_Fill:before {
+  content: "\ea2f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Header:before {
+  content: "\ea30";
+  color: #5514b4;
+}
+.icon-BT_Icons_Heart_Broken_Fill:before {
+  content: "\ea31";
+  color: #5514b4;
+}
+.icon-BT_Icons_Heart_Broken:before {
+  content: "\ea32";
+  color: #5514b4;
+}
+.icon-BT_Icons_Heart_Care_Fill:before {
+  content: "\ea33";
+  color: #5514b4;
+}
+.icon-BT_Icons_Heart_Care:before {
+  content: "\ea34";
+  color: #5514b4;
+}
+.icon-BT_Icons_Heart_Fill:before {
+  content: "\ea35";
+  color: #5514b4;
+}
+.icon-BT_Icons_Heart:before {
+  content: "\ea36";
+  color: #5514b4;
+}
+.icon-BT_Icons_Holding_Heart_Fill:before {
+  content: "\ea37";
+  color: #5514b4;
+}
+.icon-BT_Icons_Holding_Heart:before {
+  content: "\ea38";
+  color: #5514b4;
+}
+.icon-BT_Icons_Home_Tech_Expert_Fill:before {
+  content: "\ea39";
+  color: #5514b4;
+}
+.icon-BT_Icons_Home_Tech_Expert:before {
+  content: "\ea3a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Hometown_Fill:before {
+  content: "\ea3b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Hometown:before {
+  content: "\ea3c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Hub_Fill:before {
+  content: "\ea3d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Hub_Old_Fill:before {
+  content: "\ea3e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Hub_Old:before {
+  content: "\ea3f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Hub:before {
+  content: "\ea40";
+  color: #5514b4;
+}
+.icon-BT_Icons_Idea_Fill:before {
+  content: "\ea41";
+  color: #5514b4;
+}
+.icon-BT_Icons_Idea:before {
+  content: "\ea42";
+  color: #5514b4;
+}
+.icon-BT_Icons_IP_Fill:before {
+  content: "\ea43";
+  color: #5514b4;
+}
+.icon-BT_Icons_IP:before {
+  content: "\ea44";
+  color: #5514b4;
+}
+.icon-BT_Icons_IPv6_Fill:before {
+  content: "\ea45";
+  color: #5514b4;
+}
+.icon-BT_Icons_IPv6:before {
+  content: "\ea46";
+  color: #5514b4;
+}
+.icon-BT_Icons_Journey_Fill:before {
+  content: "\ea47";
+  color: #5514b4;
+}
+.icon-BT_Icons_Journey:before {
+  content: "\ea48";
+  color: #5514b4;
+}
+.icon-BT_Icons_JSON_Fill:before {
+  content: "\ea49";
+  color: #5514b4;
+}
+.icon-BT_Icons_JSON:before {
+  content: "\ea4a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Knife_And_Fork_Fill:before {
+  content: "\ea4b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Knife_And_Fork:before {
+  content: "\ea4c";
+  color: #5514b4;
+}
+.icon-BT_Icons_LAN_Fill:before {
+  content: "\ea4d";
+  color: #5514b4;
+}
+.icon-BT_Icons_LAN:before {
+  content: "\ea4e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Laptop_Connect_and_Share_Fill:before {
+  content: "\ea4f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Laptop_Connect_and_Share:before {
+  content: "\ea50";
+  color: #5514b4;
+}
+.icon-BT_Icons_Laptop_Fill:before {
+  content: "\ea51";
+  color: #5514b4;
+}
+.icon-BT_Icons_Laptop_Secure_Fill:before {
+  content: "\ea52";
+  color: #5514b4;
+}
+.icon-BT_Icons_Laptop_Secure:before {
+  content: "\ea53";
+  color: #5514b4;
+}
+.icon-BT_Icons_Laptop_Users_Fill:before {
+  content: "\ea54";
+  color: #5514b4;
+}
+.icon-BT_Icons_Laptop_Users:before {
+  content: "\ea55";
+  color: #5514b4;
+}
+.icon-BT_Icons_Laptop_Video_Conference_Fill:before {
+  content: "\ea56";
+  color: #5514b4;
+}
+.icon-BT_Icons_Laptop_Video_Conference:before {
+  content: "\ea57";
+  color: #5514b4;
+}
+.icon-BT_Icons_Laptop:before {
+  content: "\ea58";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Grid_Large_Fill:before {
+  content: "\ea59";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Grid_Large:before {
+  content: "\ea5a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Grid_Medium_Fill:before {
+  content: "\ea5b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Grid_Medium:before {
+  content: "\ea5c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Grid_Small_Fill:before {
+  content: "\ea5d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Grid_Small:before {
+  content: "\ea5e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Rows_Large_Fill:before {
+  content: "\ea5f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Rows_Large:before {
+  content: "\ea60";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Rows_Medium_Fill:before {
+  content: "\ea61";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Rows_Medium:before {
+  content: "\ea62";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Rows_Small_Fill:before {
+  content: "\ea63";
+  color: #5514b4;
+}
+.icon-BT_Icons_Layout_Rows_Small:before {
+  content: "\ea64";
+  color: #5514b4;
+}
+.icon-BT_Icons_Leadership_Fill:before {
+  content: "\ea65";
+  color: #5514b4;
+}
+.icon-BT_Icons_Leadership:before {
+  content: "\ea66";
+  color: #5514b4;
+}
+.icon-BT_Icons_Logout_Fill:before {
+  content: "\ea67";
+  color: #5514b4;
+}
+.icon-BT_Icons_Logout:before {
+  content: "\ea68";
+  color: #5514b4;
+}
+.icon-BT_Icons_Medal_Fill:before {
+  content: "\ea69";
+  color: #5514b4;
+}
+.icon-BT_Icons_Medal_with_Star_Fill:before {
+  content: "\ea6a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Medal_with_Star:before {
+  content: "\ea6b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Medal:before {
+  content: "\ea6c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Meeting_Space_Fill:before {
+  content: "\ea6d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Meeting_Space:before {
+  content: "\ea6e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Megaphone_Fill:before {
+  content: "\ea6f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Megaphone:before {
+  content: "\ea70";
+  color: #5514b4;
+}
+.icon-BT_Icons_Microphone_Fill:before {
+  content: "\ea71";
+  color: #5514b4;
+}
+.icon-BT_Icons_Microphone:before {
+  content: "\ea72";
+  color: #5514b4;
+}
+.icon-BT_Icons_Mobile_Transfer_Call_Fill:before {
+  content: "\ea73";
+  color: #5514b4;
+}
+.icon-BT_Icons_Mobile_Transfer_Call:before {
+  content: "\ea74";
+  color: #5514b4;
+}
+.icon-BT_Icons_Mobile_with_Hand_Fill:before {
+  content: "\ea75";
+  color: #5514b4;
+}
+.icon-BT_Icons_Mobile_with_Hand:before {
+  content: "\ea76";
+  color: #5514b4;
+}
+.icon-BT_Icons_Mobility_Fill:before {
+  content: "\ea77";
+  color: #5514b4;
+}
+.icon-BT_Icons_Mobility:before {
+  content: "\ea78";
+  color: #5514b4;
+}
+.icon-BT_Icons_Money_Fill:before {
+  content: "\ea79";
+  color: #5514b4;
+}
+.icon-BT_Icons_Money:before {
+  content: "\ea7a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Monitor_Tick_Fill:before {
+  content: "\ea7b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Monitor_Tick:before {
+  content: "\ea7c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Moon_Fill:before {
+  content: "\ea7d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Moon:before {
+  content: "\ea7e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Mouse_Fill:before {
+  content: "\ea7f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Mouse:before {
+  content: "\ea80";
+  color: #5514b4;
+}
+.icon-BT_Icons_Naming_Fill:before {
+  content: "\ea81";
+  color: #5514b4;
+}
+.icon-BT_Icons_Naming:before {
+  content: "\ea82";
+  color: #5514b4;
+}
+.icon-BT_Icons_New_Window_Fill:before {
+  content: "\ea83";
+  color: #5514b4;
+}
+.icon-BT_Icons_New_Window:before {
+  content: "\ea84";
+  color: #5514b4;
+}
+.icon-BT_Icons_No_Hearing_Fill:before {
+  content: "\ea85";
+  color: #5514b4;
+}
+.icon-BT_Icons_No_Hearing_or_Speech_Fill:before {
+  content: "\ea86";
+  color: #5514b4;
+}
+.icon-BT_Icons_No_Hearing_or_Speech:before {
+  content: "\ea87";
+  color: #5514b4;
+}
+.icon-BT_Icons_No_Hearing:before {
+  content: "\ea88";
+  color: #5514b4;
+}
+.icon-BT_Icons_No_Speech_Fill:before {
+  content: "\ea89";
+  color: #5514b4;
+}
+.icon-BT_Icons_No_Speech:before {
+  content: "\ea8a";
+  color: #5514b4;
+}
+.icon-BT_Icons_No_View_Fill:before {
+  content: "\ea8b";
+  color: #5514b4;
+}
+.icon-BT_Icons_No_View:before {
+  content: "\ea8c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Paper_Towel_Fill:before {
+  content: "\ea8d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Paper_Towel:before {
+  content: "\ea8e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Password_FIll:before {
+  content: "\ea8f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Password:before {
+  content: "\ea90";
+  color: #5514b4;
+}
+.icon-BT_Icons_Payment_Method_Fill:before {
+  content: "\ea91";
+  color: #5514b4;
+}
+.icon-BT_Icons_Payment_Method:before {
+  content: "\ea92";
+  color: #5514b4;
+}
+.icon-BT_Icons_Payphone_Fill:before {
+  content: "\ea93";
+  color: #5514b4;
+}
+.icon-BT_Icons_Payphone:before {
+  content: "\ea94";
+  color: #5514b4;
+}
+.icon-BT_Icons_Phone_Barred_Fill:before {
+  content: "\ea95";
+  color: #5514b4;
+}
+.icon-BT_Icons_Phone_Barred:before {
+  content: "\ea96";
+  color: #5514b4;
+}
+.icon-BT_Icons_Pin_Alt_Fill:before {
+  content: "\ea97";
+  color: #5514b4;
+}
+.icon-BT_Icons_Pin_Alt:before {
+  content: "\ea98";
+  color: #5514b4;
+}
+.icon-BT_Icons_Pin_Fill:before {
+  content: "\ea99";
+  color: #5514b4;
+}
+.icon-BT_Icons_Pin:before {
+  content: "\ea9a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Plane_Fill:before {
+  content: "\ea9b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Plane:before {
+  content: "\ea9c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Planning_Fill:before {
+  content: "\ea9d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Planning:before {
+  content: "\ea9e";
+}
+.icon-BT_Icons_Plant_Fill:before {
+  content: "\ea9f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Plant:before {
+  content: "\eaa0";
+  color: #5514b4;
+}
+.icon-BT_Icons_Podcast_Fill:before {
+  content: "\eaa1";
+  color: #5514b4;
+}
+.icon-BT_Icons_Podcast:before {
+  content: "\eaa2";
+  color: #5514b4;
+}
+.icon-BT_Icons_Presentation_Fill:before {
+  content: "\eaa3";
+  color: #5514b4;
+}
+.icon-BT_Icons_Presentation:before {
+  content: "\eaa4";
+  color: #5514b4;
+}
+.icon-BT_Icons_Price_Fill:before {
+  content: "\eaa5";
+  color: #5514b4;
+}
+.icon-BT_Icons_Price:before {
+  content: "\eaa6";
+  color: #5514b4;
+}
+.icon-BT_Icons_Process_Fill:before {
+  content: "\eaa7";
+  color: #5514b4;
+}
+.icon-BT_Icons_Process_Mining_Fill:before {
+  content: "\eaa8";
+  color: #5514b4;
+}
+.icon-BT_Icons_Process_Mining:before {
+  content: "\eaa9";
+  color: #5514b4;
+}
+.icon-BT_Icons_Process_Roles_Fill:before {
+  content: "\eaaa";
+  color: #5514b4;
+}
+.icon-BT_Icons_Process_Roles:before {
+  content: "\eaab";
+  color: #5514b4;
+}
+.icon-BT_Icons_Process:before {
+  content: "\eaac";
+  color: #5514b4;
+}
+.icon-BT_Icons_Proportional_Call_Distribution_Fill:before {
+  content: "\eaad";
+  color: #5514b4;
+}
+.icon-BT_Icons_Proportional_Call_Distribution:before {
+  content: "\eaae";
+  color: #5514b4;
+}
+.icon-BT_Icons_Recycling_Fill:before {
+  content: "\eaaf";
+  color: #5514b4;
+}
+.icon-BT_Icons_Recycling:before {
+  content: "\eab0";
+  color: #5514b4;
+}
+.icon-BT_Icons_Refund_Fill:before {
+  content: "\eab1";
+  color: #5514b4;
+}
+.icon-BT_Icons_Refund:before {
+  content: "\eab2";
+  color: #5514b4;
+}
+.icon-BT_Icons_Release_Fill:before {
+  content: "\eab3";
+  color: #5514b4;
+}
+.icon-BT_Icons_Release:before {
+  content: "\eab4";
+  color: #5514b4;
+}
+.icon-BT_Icons_Resolution_4K_Fill:before {
+  content: "\eab5";
+  color: #5514b4;
+}
+.icon-BT_Icons_Resolution_4K:before {
+  content: "\eab6";
+  color: #5514b4;
+}
+.icon-BT_Icons_Resolution_HD_Fill:before {
+  content: "\eab7";
+  color: #5514b4;
+}
+.icon-BT_Icons_Resolution_HD:before {
+  content: "\eab8";
+  color: #5514b4;
+}
+.icon-BT_Icons_Resolution_SD_Fill:before {
+  content: "\eab9";
+  color: #5514b4;
+}
+.icon-BT_Icons_Resolution_SD:before {
+  content: "\eaba";
+  color: #5514b4;
+}
+.icon-BT_Icons_Scale_Fill:before {
+  content: "\eabb";
+  color: #5514b4;
+}
+.icon-BT_Icons_Scale:before {
+  content: "\eabc";
+  color: #5514b4;
+}
+.icon-BT_Icons_Server_Fill:before {
+  content: "\eabd";
+  color: #5514b4;
+}
+.icon-BT_Icons_Server:before {
+  content: "\eabe";
+  color: #5514b4;
+}
+.icon-BT_Icons_Settings_Alt_Fill:before {
+  content: "\eabf";
+  color: #5514b4;
+}
+.icon-BT_Icons_Settings_Alt:before {
+  content: "\eac0";
+  color: #5514b4;
+}
+.icon-BT_Icons_Shield_Add_Fill:before {
+  content: "\eac1";
+  color: #5514b4;
+}
+.icon-BT_Icons_Shield_Add:before {
+  content: "\eac2";
+  color: #5514b4;
+}
+.icon-BT_Icons_Shield_Fill:before {
+  content: "\eac3";
+  color: #5514b4;
+}
+.icon-BT_Icons_Shield_Question_Mark_FIll:before {
+  content: "\eac4";
+  color: #5514b4;
+}
+.icon-BT_Icons_Shield_Question_Mark:before {
+  content: "\eac5";
+  color: #5514b4;
+}
+.icon-BT_Icons_Shield_Security_Fill:before {
+  content: "\eac6";
+  color: #5514b4;
+}
+.icon-BT_Icons_Shield_Security:before {
+  content: "\eac7";
+  color: #5514b4;
+}
+.icon-BT_Icons_Shield:before {
+  content: "\eac8";
+  color: #5514b4;
+}
+.icon-BT_Icons_Ship_Fill:before {
+  content: "\eac9";
+  color: #5514b4;
+}
+.icon-BT_Icons_Ship:before {
+  content: "\eaca";
+  color: #5514b4;
+}
+.icon-BT_Icons_Signal_Strength_0:before {
+  content: "\eacb";
+  color: #5514b4;
+}
+.icon-BT_Icons_Signal_Strength_1:before {
+  content: "\eacc";
+  color: #5514b4;
+}
+.icon-BT_Icons_Signal_Strength_2:before {
+  content: "\eacd";
+  color: #5514b4;
+}
+.icon-BT_Icons_Signal_Strength_3:before {
+  content: "\eace";
+  color: #5514b4;
+}
+.icon-BT_Icons_Signature_Fill:before {
+  content: "\eacf";
+  color: #5514b4;
+}
+.icon-BT_Icons_Signature:before {
+  content: "\ead0";
+  color: #5514b4;
+}
+.icon-BT_Icons_Signpost_Fill:before {
+  content: "\ead1";
+  color: #5514b4;
+}
+.icon-BT_Icons_Signpost:before {
+  content: "\ead2";
+  color: #5514b4;
+}
+.icon-BT_Icons_Simple_Fill:before {
+  content: "\ead3";
+  color: #5514b4;
+}
+.icon-BT_Icons_Simple:before {
+  content: "\ead4";
+  color: #5514b4;
+}
+.icon-BT_Icons_Skiing_Fill:before {
+  content: "\ead5";
+  color: #5514b4;
+}
+.icon-BT_Icons_Skiing:before {
+  content: "\ead6";
+  color: #5514b4;
+}
+.icon-BT_Icons_Skis_Fill:before {
+  content: "\ead7";
+  color: #5514b4;
+}
+.icon-BT_Icons_Skis:before {
+  content: "\ead8";
+  color: #5514b4;
+}
+.icon-BT_Icons_Snoboarding:before {
+  content: "\ead9";
+  color: #5514b4;
+}
+.icon-BT_Icons_Snowboarding_Fill:before {
+  content: "\eada";
+  color: #5514b4;
+}
+.icon-BT_Icons_Speaker_Half_Volume_Fill:before {
+  content: "\eadb";
+  color: #5514b4;
+}
+.icon-BT_Icons_Speaker_Half_Volume:before {
+  content: "\eadc";
+  color: #5514b4;
+}
+.icon-BT_Icons_Speaker_Low_Volume_Fill:before {
+  content: "\eadd";
+  color: #5514b4;
+}
+.icon-BT_Icons_Speaker_Mute_Fill:before {
+  content: "\eade";
+  color: #5514b4;
+}
+.icon-BT_Icons_Speaker_Mute:before {
+  content: "\eadf";
+  color: #5514b4;
+}
+.icon-BT_Icons_3G_Fill:before {
+  content: "\eae0";
+  color: #5514b4;
+}
+.icon-BT_Icons_3G:before {
+  content: "\eae1";
+  color: #5514b4;
+}
+.icon-BT_Icons_4G_Fill:before {
+  content: "\eae2";
+  color: #5514b4;
+}
+.icon-BT_Icons_4G:before {
+  content: "\eae3";
+  color: #5514b4;
+}
+.icon-BT_Icons_5G_Fill:before {
+  content: "\eae4";
+  color: #5514b4;
+}
+.icon-BT_Icons_5G:before {
+  content: "\eae5";
+  color: #5514b4;
+}
+.icon-BT_Icons_Accessibility_Fill:before {
+  content: "\eae6";
+  color: #5514b4;
+}
+.icon-BT_Icons_Accessibility:before {
+  content: "\eae7";
+  color: #5514b4;
+}
+.icon-BT_Icons_Add_Fill:before {
+  content: "\eae8";
+  color: #5514b4;
+}
+.icon-BT_Icons_Add:before {
+  content: "\eae9";
+  color: #5514b4;
+}
+.icon-BT_Icons_Alert_Fill:before {
+  content: "\eaea";
+  color: #5514b4;
+}
+.icon-BT_Icons_Alert_Triangle_Fill:before {
+  content: "\eaeb";
+  color: #5514b4;
+}
+.icon-BT_Icons_Alert_Triangle:before {
+  content: "\eaec";
+  color: #5514b4;
+}
+.icon-BT_Icons_Alert:before {
+  content: "\eaed";
+  color: #5514b4;
+}
+.icon-BT_Icons_Answer_Point_Fill:before {
+  content: "\eaee";
+  color: #5514b4;
+}
+.icon-BT_Icons_Answer_Point:before {
+  content: "\eaef";
+  color: #5514b4;
+}
+.icon-BT_Icons_Architecture_Fill:before {
+  content: "\eaf0";
+  color: #5514b4;
+}
+.icon-BT_Icons_Architecture:before {
+  content: "\eaf1";
+  color: #5514b4;
+}
+.icon-BT_Icons_Archive_Fill:before {
+  content: "\eaf2";
+  color: #5514b4;
+}
+.icon-BT_Icons_Archive:before {
+  content: "\eaf3";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Alt_Down_Fill:before {
+  content: "\eaf4";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Alt_Down:before {
+  content: "\eaf5";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Alt_Left_Fill:before {
+  content: "\eaf6";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Alt_Left_Right_Fill:before {
+  content: "\eaf7";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Alt_Left_Right:before {
+  content: "\eaf8";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Alt_Left:before {
+  content: "\eaf9";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Alt_Up_Fill:before {
+  content: "\eafa";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Alt_Up:before {
+  content: "\eafb";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Down_Fill:before {
+  content: "\eafc";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Down:before {
+  content: "\eafd";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Left_Fill:before {
+  content: "\eafe";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Left_Right_Fill:before {
+  content: "\eaff";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Left_Right:before {
+  content: "\eb00";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Left:before {
+  content: "\eb01";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Up_Fill:before {
+  content: "\eb02";
+  color: #5514b4;
+}
+.icon-BT_Icons_Arrow_Up:before {
+  content: "\eb03";
+  color: #5514b4;
+}
+.icon-BT_Icons_Attachment_Alt_Fill:before {
+  content: "\eb04";
+  color: #5514b4;
+}
+.icon-BT_Icons_Attachment_Alt:before {
+  content: "\eb05";
+  color: #5514b4;
+}
+.icon-BT_Icons_Attachment_Fill:before {
+  content: "\eb06";
+  color: #5514b4;
+}
+.icon-BT_Icons_Attachment:before {
+  content: "\eb07";
+  color: #5514b4;
+}
+.icon-BT_Icons_Bag_Fill:before {
+  content: "\eb08";
+  color: #5514b4;
+}
+.icon-BT_Icons_Bag:before {
+  content: "\eb09";
+  color: #5514b4;
+}
+.icon-BT_Icons_Bin_Fill:before {
+  content: "\eb0a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Bin:before {
+  content: "\eb0b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Blocked_Number_Fill:before {
+  content: "\eb0c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Blocked_Number:before {
+  content: "\eb0d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Boat_Fill:before {
+  content: "\eb0e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Boat:before {
+  content: "\eb0f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Body_Fill:before {
+  content: "\eb10";
+  color: #5514b4;
+}
+.icon-BT_Icons_Body:before {
+  content: "\eb11";
+  color: #5514b4;
+}
+.icon-BT_Icons_Broadband_Fill:before {
+  content: "\eb12";
+  color: #5514b4;
+}
+.icon-BT_Icons_Broadband:before {
+  content: "\eb13";
+  color: #5514b4;
+}
+.icon-BT_Icons_Building_Fill:before {
+  content: "\eb14";
+  color: #5514b4;
+}
+.icon-BT_Icons_Building:before {
+  content: "\eb15";
+  color: #5514b4;
+}
+.icon-BT_Icons_Burger_Menu_Fill:before {
+  content: "\eb16";
+  color: #5514b4;
+}
+.icon-BT_Icons_Burger_Menu:before {
+  content: "\eb17";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cake_Fill:before {
+  content: "\eb18";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cake:before {
+  content: "\eb19";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender_Accepted_Fill:before {
+  content: "\eb1a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender_Accepted:before {
+  content: "\eb1b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender_Add_Event_Fill:before {
+  content: "\eb1c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender_Add_Event:before {
+  content: "\eb1d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender_Fill:before {
+  content: "\eb1e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender_Payment_Plan_Alt_Fill:before {
+  content: "\eb1f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender_Payment_Plan_Alt:before {
+  content: "\eb20";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender_Payment_Plan_Fill:before {
+  content: "\eb21";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender_Payment_Plan:before {
+  content: "\eb22";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender_Special_Date_Fill:before {
+  content: "\eb23";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender_Special_Date:before {
+  content: "\eb24";
+  color: #5514b4;
+}
+.icon-BT_Icons_Calender:before {
+  content: "\eb25";
+  color: #5514b4;
+}
+.icon-BT_Icons_Call_Routing_Fill:before {
+  content: "\eb26";
+  color: #5514b4;
+}
+.icon-BT_Icons_Call_Routing:before {
+  content: "\eb27";
+  color: #5514b4;
+}
+.icon-BT_Icons_Caller_ID_Fill:before {
+  content: "\eb28";
+  color: #5514b4;
+}
+.icon-BT_Icons_Caller_ID:before {
+  content: "\eb29";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chat_Fill:before {
+  content: "\eb2a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chat_Message_Fill:before {
+  content: "\eb2b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chat_Message:before {
+  content: "\eb2c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chat_Typing_Fill:before {
+  content: "\eb2d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chat_Typing:before {
+  content: "\eb2e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chat:before {
+  content: "\eb2f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chevron_Down_2px:before {
+  content: "\eb30";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chevron_Down:before {
+  content: "\eb31";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chevron_Left_2px:before {
+  content: "\eb32";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chevron_Left:before {
+  content: "\eb33";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chevron_Right_2px:before {
+  content: "\eb34";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chevron_Right:before {
+  content: "\eb35";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chevron_Up_2px:before {
+  content: "\eb36";
+  color: #5514b4;
+}
+.icon-BT_Icons_Chevron_Up:before {
+  content: "\eb37";
+  color: #5514b4;
+}
+.icon-BT_Icons_Clipboard_Fill:before {
+  content: "\eb38";
+  color: #5514b4;
+}
+.icon-BT_Icons_Clipboard_Tick_Fill:before {
+  content: "\eb39";
+  color: #5514b4;
+}
+.icon-BT_Icons_Clipboard_Tick:before {
+  content: "\eb3a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Clipboard:before {
+  content: "\eb3b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Clock_Fill:before {
+  content: "\eb3c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Clock:before {
+  content: "\eb3d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Alert_Fill:before {
+  content: "\eb3e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Alert:before {
+  content: "\eb3f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Desktop_Fill:before {
+  content: "\eb40";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Desktop:before {
+  content: "\eb41";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Fill:before {
+  content: "\eb42";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Link_Fill:before {
+  content: "\eb43";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Link:before {
+  content: "\eb44";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Meeting_Fill:before {
+  content: "\eb45";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Meeting:before {
+  content: "\eb46";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Phone_Fill:before {
+  content: "\eb47";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Phone:before {
+  content: "\eb48";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Security_Fill:before {
+  content: "\eb49";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_Security:before {
+  content: "\eb4a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_User_Fill:before {
+  content: "\eb4b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud_User:before {
+  content: "\eb4c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cloud:before {
+  content: "\eb4d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Collapse_Fill:before {
+  content: "\eb4e";
+  color: #5514b4;
+}
+.icon-BT_Icons_Collapse:before {
+  content: "\eb4f";
+  color: #5514b4;
+}
+.icon-BT_Icons_Compare_Fill:before {
+  content: "\eb50";
+  color: #5514b4;
+}
+.icon-BT_Icons_Compare:before {
+  content: "\eb51";
+  color: #5514b4;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path1:before {
+  content: "\eb52";
+  color: rgb(255, 255, 255);
+}
+.icon-BT_Icons_Computer_Chip_Fill .path2:before {
+  content: "\eb53";
+  margin-left: -1em;
+  color: rgb(85, 20, 180);
+}
+.icon-BT_Icons_Computer_Chip_Fill .path3:before {
+  content: "\eb54";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path4:before {
+  content: "\eb55";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path5:before {
+  content: "\eb56";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path6:before {
+  content: "\eb57";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path7:before {
+  content: "\eb58";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path8:before {
+  content: "\eb59";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path9:before {
+  content: "\eb5a";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path10:before {
+  content: "\eb5b";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path11:before {
+  content: "\eb5c";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path12:before {
+  content: "\eb5d";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path13:before {
+  content: "\eb5e";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path14:before {
+  content: "\eb5f";
+  margin-left: -1em;
+  color: none;
+}
+.icon-BT_Icons_Computer_Chip_Fill .path15:before {
+  content: "\eb60";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-BT_Icons_Computer_Chip_Fill .path16:before {
+  content: "\eb61";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-BT_Icons_Computer_Chip:before {
+  content: "\eb62";
+  color: #fff;
+}
+.icon-BT_Icons_Connected_Care_Fill:before {
+  content: "\eb63";
+  color: #5514b4;
+}
+.icon-BT_Icons_Connected_Care:before {
+  content: "\eb64";
+  color: #5514b4;
+}
+.icon-BT_Icons_Contact_No_Details_Fill:before {
+  content: "\eb65";
+  color: #5514b4;
+}
+.icon-BT_Icons_Contact_No_Details:before {
+  content: "\eb66";
+  color: #5514b4;
+}
+.icon-BT_Icons_Contacts_Fill:before {
+  content: "\eb67";
+  color: #5514b4;
+}
+.icon-BT_Icons_Contacts:before {
+  content: "\eb68";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cross_Alt_2px_Fill:before {
+  content: "\eb69";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cross_Alt_2px:before {
+  content: "\eb6a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cross_Alt_Fill:before {
+  content: "\eb6b";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cross_Alt:before {
+  content: "\eb6c";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cross_Fill:before {
+  content: "\eb6d";
+  color: #5514b4;
+}
+.icon-BT_Icons_Cross:before {
+  content: "\eb6e";
+  color: #5514b4;
+}
+.icon-BT_Icons_CSS_Fill:before {
+  content: "\eb6f";
+  color: #5514b4;
+}
+.icon-BT_Icons_CSS:before {
+  content: "\eb70";
+  color: #5514b4;
+}
+.icon-BT_Icons_Design_Fill:before {
+  content: "\eb71";
+  color: #5514b4;
+}
+.icon-BT_Icons_Design:before {
+  content: "\eb72";
+  color: #5514b4;
+}
+.icon-BT_Icons_Details_Fill:before {
+  content: "\eb73";
+  color: #5514b4;
+}
+.icon-BT_Icons_Details_Group_Fill:before {
+  content: "\eb74";
+  color: #5514b4;
+}
+.icon-BT_Icons_Details_Group:before {
+  content: "\eb75";
+  color: #5514b4;
+}
+.icon-BT_Icons_Details:before {
+  content: "\eb76";
+  color: #5514b4;
+}
+.icon-BT_Icons_Dexterity_Fill:before {
+  content: "\eb77";
+  color: #5514b4;
+}
+.icon-BT_Icons_Dexterity:before {
+  content: "\eb78";
+  color: #5514b4;
+}
+.icon-BT_Icons_Dial_Pad_Fill:before {
+  content: "\eb79";
+  color: #5514b4;
+}
+.icon-BT_Icons_Dial_Pad_With_Hand_Fill:before {
+  content: "\eb7a";
+  color: #5514b4;
+}
+.icon-BT_Icons_Dial_Pad_With_Hand:before {
+  content: "\eb7b";
+  color: #5514b4;
+}

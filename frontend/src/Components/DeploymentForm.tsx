@@ -61,9 +61,10 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
         </legend>
         <form className="form-primary" onSubmit={handleSubmit}>
           <div className="form-line-item">
-            <label>
+            <label htmlFor="image-name-input">
               Image Name
               <input
+                id="image-name-input"
                 type="text"
                 value={imageName}
                 onChange={(e) => setImageName(e.target.value)}

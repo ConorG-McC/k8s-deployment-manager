@@ -1,6 +1,6 @@
 /* Core style library for BT branded websites.  Component CSS libraries are added here */
 @import url("inputs.css");
 @import url("typography.css");
-@import url("bt-icons.css");
+@import url("bt-icons-new.css");
 @import url("animations.css");
 @import url("templates.css");
