@@ -35,23 +35,6 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
         replicas,
       };
 
-      const validationResponse = await fetch(
-        'http://localhost:3001/validate-deployment-details',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(deploymentDetails),
-        }
-      );
-
-      if (!validationResponse.ok) {
-        console.error(
-          'Failed to validate deployment details',
-          validationResponse
-        );
-        throw new Error('Failed to validate deployment details');
-      }
-
       const response = await fetch('http://localhost:3001/deploy', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
