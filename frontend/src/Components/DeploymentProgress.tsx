@@ -1,3 +1,5 @@
+// frontend/progress.tsx
+
 import { DeploymentState, DeploymentStatus } from 'data-types';
 import React, { useEffect, useState } from 'react';
 
@@ -8,8 +10,7 @@ interface DeploymentProgressProps {
 const DeploymentProgress: React.FC<DeploymentProgressProps> = ({
   deploymentId,
 }) => {
-  const [progress, setProgress] = useState<number>(0);
-  const [state, setState] = useState<string>('Pending');
+  const [state, setState] = useState<string>(DeploymentState.Pending);
   const [serviceUrl, setServiceUrl] = useState<string | null>(null);
   const [webSocket, setWs] = useState<WebSocket | null>(null);
 
@@ -24,12 +25,12 @@ const DeploymentProgress: React.FC<DeploymentProgressProps> = ({
     ws.onmessage = (event) => {
       const data: DeploymentStatus = JSON.parse(event.data);
 
-      setProgress(data.progress);
       setState(data.state);
 
-      // Update service URL if available
-      if (data.details.serviceUrl) {
+      if (data.state === DeploymentState.Completed && data.details.serviceUrl) {
         setServiceUrl(data.details.serviceUrl);
+      } else if (data.state === DeploymentState.Failed) {
+        setServiceUrl(null); // Clear service URL on failure
       }
     };
 
@@ -70,11 +71,15 @@ const DeploymentProgress: React.FC<DeploymentProgressProps> = ({
         <div className='form-primary'>
           <h3>Deployment ID: {deploymentId}</h3>
           <p>State: {state}</p>
-          <p>Progress: {progress}%</p>
           {serviceUrl && state === DeploymentState.Completed && (
             <p>
               Your application is ready! Access it here:{' '}
-              <a href={serviceUrl} target='_blank' rel='noopener noreferrer'>
+              <a
+                href={serviceUrl}
+                target='_blank'
+                rel='noopener noreferrer'
+                style={{ color: 'black' }}
+              >
                 {serviceUrl}
               </a>
             </p>
@@ -82,14 +87,14 @@ const DeploymentProgress: React.FC<DeploymentProgressProps> = ({
           {state === DeploymentState.Failed && (
             <p style={{ color: 'red' }}>Deployment failed. Please try again.</p>
           )}
-          {/* <div
+        </div>
+        {/* <div
             className={progress < 100 ? 'btgs-wave-loader-animation-inner' : ''}
           >
             <span id='purple-dot'></span>
             <span id='pink-dot'></span>
             <span id='blue-dot'></span>
           </div> */}
-        </div>
       </fieldset>
     </section>
   );
