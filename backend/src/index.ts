@@ -1,9 +1,15 @@
+// backend/index.ts
+
 import express, { Request, Response } from 'express';
 import { Server as HttpServer } from 'http';
 import { WebSocketServer, WebSocket } from 'ws';
 import cors from 'cors';
 import { DeploymentManager } from './services/deploymentManager';
-import { DeploymentDetails } from 'data-types';
+import {
+  DeploymentDetails,
+  DeploymentState,
+  DeploymentStatus,
+} from 'data-types';
 
 const app = express();
 const server = new HttpServer(app);
@@ -12,24 +18,91 @@ const wss = new WebSocketServer({ server });
 app.use(cors());
 app.use(express.json());
 
+const connections: Map<string, Set<WebSocket>> = new Map();
+
 const deploymentManager = new DeploymentManager();
 
-app.post('/deploy', (req: Request, res: Response): void => {
-  const { imageName, serviceName, port, replicas }: DeploymentDetails =
-    req.body;
-
-  if (!imageName || !serviceName || !port || replicas < 1) {
-    res.status(400).json({ error: 'Invalid deployment details' });
-    return;
+// Listen to stateChange events emitted by DeploymentManager
+deploymentManager.on(
+  'stateChange',
+  (deploymentId: string, deploymentStatus: DeploymentStatus) => {
+    const clients = connections.get(deploymentId);
+    if (clients) {
+      const message = JSON.stringify(deploymentStatus);
+      clients.forEach((ws) => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(message);
+        }
+      });
+    }
   }
+);
 
-  const deploymentId = deploymentManager.addDeployment(imageName);
-  console.log(`Deployment created: ${deploymentId}`);
+app.post('/deploy', async (req: Request, res: Response) => {
+  const {
+    imageName,
+    serviceName,
+    namespace,
+    port,
+    replicas,
+  }: DeploymentDetails = req.body;
 
-  res.json({ deploymentId });
+  try {
+    const deploymentId = await deploymentManager.addDeployment({
+      imageName,
+      serviceName,
+      namespace,
+      port,
+      replicas,
+    });
+
+    // Immediately respond with deployment ID
+    res.json({ deploymentId });
+
+    // Start the deployment process asynchronously
+    (async () => {
+      try {
+        deploymentManager.updateDeploymentState(
+          deploymentId,
+          DeploymentState.Validating
+        );
+
+        console.log('Validating deployment details...');
+        if (!imageName || !serviceName || !namespace || !port || replicas < 1) {
+          throw new Error(
+            'All fields are required, and replicas must be at least 1.'
+          );
+        }
+        deploymentManager.updateDeploymentState(
+          deploymentId,
+          DeploymentState.NamespaceCheck
+        );
+        await deploymentManager.checkNamespace(deploymentId, namespace);
+        deploymentManager.updateDeploymentState(
+          deploymentId,
+          DeploymentState.NamespaceCreated
+        );
+
+        await deploymentManager.startDeployment(deploymentId);
+        deploymentManager.updateDeploymentState(
+          deploymentId,
+          DeploymentState.Completed
+        );
+      } catch (err) {
+        console.error(`Error during deployment process:`, err);
+        deploymentManager.updateDeploymentState(
+          deploymentId,
+          DeploymentState.Failed
+        );
+      }
+    })(); // Immediately Invoked Async Function
+  } catch (err) {
+    console.error(`Error starting deployment:`, err);
+    res.status(500).json({ error: 'Failed to create deployment.' });
+  }
 });
 
-wss.on('connection', (ws: WebSocket, req) => {
+wss.on('connection', async (ws: WebSocket, req) => {
   const deploymentId = req.url?.substring(1);
 
   if (!deploymentId || !deploymentManager.getDeployment(deploymentId)) {
@@ -39,27 +112,30 @@ wss.on('connection', (ws: WebSocket, req) => {
 
   console.log(`WebSocket connected for deployment ID: ${deploymentId}`);
 
-  const interval = setInterval(() => {
-    const deployment = deploymentManager.updateProgress(deploymentId);
+  const deployment = await deploymentManager.getDeployment(deploymentId);
 
-    if (!deployment) {
-      clearInterval(interval);
-      ws.close(1008, 'Deployment not found');
-      return;
-    }
+  if (!deployment) {
+    ws.close(1008, 'Deployment not found');
+    return;
+  }
 
-    if (ws.readyState === WebSocket.OPEN) {
-      ws.send(JSON.stringify(deployment));
+  if (!connections.has(deploymentId)) {
+    connections.set(deploymentId, new Set());
+  }
 
-      if (deployment.state === 'Completed') {
-        clearInterval(interval);
-      }
-    }
-  }, 1000);
+  connections.get(deploymentId)?.add(ws);
+
+  // Send the current deployment status
+  if (ws.readyState === WebSocket.OPEN && deployment) {
+    ws.send(JSON.stringify(deployment));
+  }
 
   ws.on('close', () => {
     console.log(`WebSocket closed for deployment ID: ${deploymentId}`);
-    clearInterval(interval);
+    connections.get(deploymentId)?.delete(ws);
+    if (connections.get(deploymentId)?.size === 0) {
+      connections.delete(deploymentId);
+    }
   });
 });
 
