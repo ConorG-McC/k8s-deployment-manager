@@ -14,9 +14,7 @@ interface DeploymentProgressProps {
 const DeploymentProgress: React.FC<DeploymentProgressProps> = ({
   deploymentId,
 }) => {
-  const [state, setState] = useState<DeploymentState>(
-    DeploymentState.Completed
-  );
+  const [state, setState] = useState<DeploymentState>(DeploymentState.Pending);
   const [serviceUrl, setServiceUrl] = useState<string | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
   const navigate = useNavigate();
