@@ -1,5 +1,6 @@
 import { DeploymentDetails } from 'data-types';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface DeploymentFormProps {
   onSubmit: (deploymentId: string) => void;
@@ -13,6 +14,7 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
   const [replicas, setReplicas] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,6 +50,7 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
 
       const { deploymentId } = await response.json();
       onSubmit(deploymentId);
+      navigate(`/progress/${deploymentId}`);
     } catch (error) {
       console.error('Error submitting deployment:', error);
       setError('Failed to create deployment');
@@ -131,7 +134,7 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
             <button
               className='gs-btn-secondary'
               type='button'
-              onClick={() => window.history.back()}
+              onClick={() => navigate('/')}
             >
               Back
             </button>
