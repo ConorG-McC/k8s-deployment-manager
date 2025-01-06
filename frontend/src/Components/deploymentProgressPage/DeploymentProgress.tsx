@@ -90,7 +90,7 @@ const DeploymentProgress: React.FC<DeploymentProgressProps> = ({
                 href={serviceUrl}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='service-link'
+                style={{ color: '#5414b3' }}
               >
                 here
               </a>
