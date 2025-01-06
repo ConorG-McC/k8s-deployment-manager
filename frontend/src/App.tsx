@@ -32,8 +32,7 @@ function App(): React.ReactElement {
             deploymentId ? (
               <DeploymentProgress deploymentId={deploymentId} />
             ) : (
-              // <div>Loading...</div>
-              <DeploymentProgress deploymentId='1' />
+              <div>Loading...</div>
             )
           }
         />
