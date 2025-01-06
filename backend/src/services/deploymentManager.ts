@@ -1,17 +1,19 @@
+import { EventEmitter } from 'events';
+import * as k8s from '@kubernetes/client-node';
+import { ChildProcess, exec } from 'child_process';
 import {
   DeploymentDetails,
-  DeploymentMap,
+  Deployments,
   DeploymentState,
   DeploymentStatus,
 } from 'data-types';
-import * as k8s from '@kubernetes/client-node';
-import { exec } from 'child_process';
-import { EventEmitter } from 'events';
+import { sleep } from '../utils/sleep';
 
 export class DeploymentManager extends EventEmitter {
-  private deployments: DeploymentMap = new Map();
+  private deployments: Deployments = new Map();
   private k8sAppsApi: k8s.AppsV1Api;
   private k8sCoreApi: k8s.CoreV1Api;
+  private portForwardProcesses: Map<string, ChildProcess> = new Map();
 
   constructor() {
     super();
@@ -21,9 +23,42 @@ export class DeploymentManager extends EventEmitter {
     this.k8sCoreApi = kc.makeApiClient(k8s.CoreV1Api);
   }
 
-  /**
-   * Add deployment to in-memory store
-   */
+  async handleDeployment(
+    deploymentId: string,
+    details: DeploymentDetails
+  ): Promise<void> {
+    try {
+      await this.validateDeploymentDetails(deploymentId, details);
+
+      await this.checkNamespace(deploymentId, details.namespace);
+
+      await this.startDeployment(deploymentId);
+    } catch (err) {
+      console.error(
+        `Error during deployment process for ID ${deploymentId}:`,
+        err
+      );
+      throw err;
+    }
+  }
+
+  async validateDeploymentDetails(
+    deploymentId: string,
+    details: DeploymentDetails
+  ) {
+    this.updateDeploymentState(deploymentId, DeploymentState.Validating);
+    await sleep(2000);
+
+    console.log('Validating deployment details...');
+    const { imageName, serviceName, namespace, port, replicas } = details;
+
+    if (!imageName || !serviceName || !namespace || !port || replicas < 1) {
+      throw new Error(
+        'All fields are required, and replicas must be at least 1.'
+      );
+    }
+  }
+
   async addDeployment(details: DeploymentDetails): Promise<string> {
     const { serviceName } = details;
     const deploymentId = `${serviceName}-${Date.now()}`;
@@ -35,24 +70,24 @@ export class DeploymentManager extends EventEmitter {
     return deploymentId;
   }
 
-  /**
-   * Retrieve deployment by ID
-   */
   getDeployment(deploymentId: string): DeploymentStatus | undefined {
     return this.deployments.get(deploymentId);
   }
 
-  /**
-   * Ensure namespace exists or create it
-   */
   async checkNamespace(deploymentId: string, namespace: string): Promise<void> {
     this.updateDeploymentState(deploymentId, DeploymentState.NamespaceCheck);
+    await sleep(2000);
+
     console.log(`Checking namespace: ${namespace}`);
     try {
       await this.k8sCoreApi.readNamespace(namespace);
     } catch (err: any) {
       if (err.response?.body.code === 404) {
         console.log(`Namespace '${namespace}' not found. Creating it...`);
+        this.updateDeploymentState(
+          deploymentId,
+          DeploymentState.CreatingNamespace
+        );
         const namespaceManifest: k8s.V1Namespace = {
           apiVersion: 'v1',
           kind: 'Namespace',
@@ -63,23 +98,20 @@ export class DeploymentManager extends EventEmitter {
           deploymentId,
           DeploymentState.NamespaceCreated
         );
+        await sleep(2000);
+
         console.log(`Namespace '${namespace}' created.`);
       } else {
         this.updateDeploymentState(deploymentId, DeploymentState.Failed);
+        await sleep(2000);
+
         console.error(`Error checking namespace '${namespace}':`, err.message);
         throw err;
       }
     }
   }
 
-  /**
-   * Start Kubernetes deployment
-   */
   async startDeployment(deploymentId: string): Promise<void> {
-    this.updateDeploymentState(
-      deploymentId,
-      DeploymentState.CreatingDeployment
-    );
     const deployment = this.deployments.get(deploymentId);
     if (!deployment) {
       throw new Error(`No deployment found for ID: ${deploymentId}`);
@@ -103,7 +135,7 @@ export class DeploymentManager extends EventEmitter {
               {
                 name: serviceName,
                 image: imageName,
-                ports: [{ containerPort: Number(port) }],
+                ports: [{ containerPort: port }],
               },
             ],
           },
@@ -112,6 +144,11 @@ export class DeploymentManager extends EventEmitter {
     };
 
     try {
+      this.updateDeploymentState(
+        deploymentId,
+        DeploymentState.CreatingDeployment
+      );
+      await sleep(2000);
       await this.k8sAppsApi.createNamespacedDeployment(
         namespace,
         deploymentManifest
@@ -120,48 +157,50 @@ export class DeploymentManager extends EventEmitter {
         deploymentId,
         DeploymentState.DeploymentCreated
       );
+      await sleep(2000);
       console.log(
         `Deployment '${serviceName}' created in namespace '${namespace}'.`
       );
 
       this.updateDeploymentState(deploymentId, DeploymentState.CreatingService);
-      await this.createService(
-        serviceName,
-        namespace,
-        Number(port),
-        serviceType
-      );
+      await sleep(2000);
+      await this.createService(serviceName, namespace, port, serviceType);
+
       this.updateDeploymentState(deploymentId, DeploymentState.ServiceCreated);
+      await sleep(2000);
 
       this.updateDeploymentState(deploymentId, DeploymentState.WaitingForPods);
+      await sleep(2000);
+
       await this.waitForDeploymentReady(namespace, serviceName);
       this.updateDeploymentState(deploymentId, DeploymentState.PodsReady);
+      await sleep(2000);
 
       const randomPort = Math.floor(Math.random() * 10000) + 30000;
 
       this.updateDeploymentState(deploymentId, DeploymentState.PortForwarding);
+      await sleep(2000);
 
       await this.portForwardService(
         namespace,
         `${serviceName}-service`,
         randomPort,
-        Number(port)
+        port
       );
 
       deployment.details.serviceUrl = `http://127.0.0.1:${randomPort}`;
       console.log(`Service available at http://127.0.0.1:${randomPort}`);
 
       this.updateDeploymentState(deploymentId, DeploymentState.Completed);
+      await sleep(2000);
     } catch (err: any) {
       this.updateDeploymentState(deploymentId, DeploymentState.Failed);
+      await sleep(2000);
       console.error('Error starting deployment:', err.message);
       throw err;
     }
   }
 
-  /**
-   * Create a service
-   */
   async createService(
     serviceName: string,
     namespace: string,
@@ -190,9 +229,6 @@ export class DeploymentManager extends EventEmitter {
     }
   }
 
-  /**
-   * Wait for deployment readiness
-   */
   private async waitForDeploymentReady(
     namespace: string,
     serviceName: string,
@@ -217,7 +253,7 @@ export class DeploymentManager extends EventEmitter {
       console.log(
         `Waiting for deployment '${serviceName}' to be ready... (${availableReplicas}/${desiredReplicas} replicas available)`
       );
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      await sleep(3000);
     }
 
     throw new Error(
@@ -225,9 +261,6 @@ export class DeploymentManager extends EventEmitter {
     );
   }
 
-  /**
-   * Port-forward a service to localhost
-   */
   private async portForwardService(
     namespace: string,
     serviceName: string,
@@ -250,23 +283,18 @@ export class DeploymentManager extends EventEmitter {
     process.on('close', (code) => {
       console.log(`Port-forward process exited with code ${code}`);
     });
+
+    this.portForwardProcesses.set(serviceName, process);
   }
 
-  /**
-   * Update deployment state
-   */
-  updateDeploymentState(
-    deploymentId: string,
-    newState: DeploymentState
-  ): DeploymentStatus | undefined {
+  updateDeploymentState(deploymentId: string, newState: DeploymentState): void {
     const deployment = this.deployments.get(deploymentId);
     if (!deployment) {
       console.error(`Deployment ID '${deploymentId}' not found.`);
-      return undefined;
+      return;
     }
 
     deployment.state = newState;
-    this.emit('stateChange', deploymentId, deployment); // Emit event
-    return deployment;
+    this.emit('stateChange', deploymentId, deployment);
   }
 }

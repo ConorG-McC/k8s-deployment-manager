@@ -1,0 +1,47 @@
+.progress-container {
+  position: relative;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.progress {
+  width: 100%;
+  height: 25px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.progress.neutral::-webkit-progress-value {
+  background-color: #6c757d;
+}
+
+.progress.inProgress::-webkit-progress-value {
+  background-color: #17a2b8;
+}
+
+.progress.warning::-webkit-progress-value {
+  background-color: #ffc107;
+}
+
+.progress.success::-webkit-progress-value {
+  background-color: #28a745;
+}
+
+.progress.error::-webkit-progress-value {
+  background-color: #dc3545;
+}
+
+.progress-label {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  color: #ffffff;
+  white-space: nowrap;
+  line-height: 25px;
+  font-size: 14px;
+}

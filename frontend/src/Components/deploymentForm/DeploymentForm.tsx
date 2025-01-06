@@ -1,5 +1,6 @@
 import { DeploymentDetails } from 'data-types';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface DeploymentFormProps {
   onSubmit: (deploymentId: string) => void;
@@ -9,10 +10,11 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
   const [imageName, setImageName] = useState('');
   const [serviceName, setServiceName] = useState('');
   const [namespace, setNamespace] = useState('');
-  const [port, setPort] = useState('');
-  const [replicas, setReplicas] = useState(1);
+  const [port, setPort] = useState<number>(0);
+  const [replicas, setReplicas] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,8 +22,8 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
     setLoading(true);
     setError(null);
 
-    if (!imageName || !serviceName || !port || replicas < 1) {
-      setError('All fields are required and replicas must be at least 1.');
+    if (!imageName || !serviceName || !namespace || port < 1 || replicas < 1) {
+      setError('Fields are invalid, please amend.');
       setLoading(false);
       return;
     }
@@ -48,6 +50,7 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
 
       const { deploymentId } = await response.json();
       onSubmit(deploymentId);
+      navigate(`/progress/${deploymentId}`);
     } catch (error) {
       console.error('Error submitting deployment:', error);
       setError('Failed to create deployment');
@@ -106,9 +109,10 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
               <input
                 type='number'
                 value={port}
-                onChange={(e) => setPort(e.target.value)}
+                onChange={(e) => setPort(Number(e.target.value))}
                 required
                 aria-label='Port'
+                min='1'
               />
             </label>
           </div>
@@ -118,16 +122,22 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
               <input
                 type='number'
                 value={replicas}
-                onChange={(e) => setReplicas(+e.target.value)}
+                onChange={(e) => setReplicas(Number(e.target.value))}
                 required
                 aria-label='Replicas'
                 min='1'
               />
             </label>
-
-            {error && <p style={{ color: 'red' }}>{error}</p>}
           </div>
-          <div className='form-line-item'>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <div className='form-line-item buttons'>
+            <button
+              className='gs-btn-secondary'
+              type='button'
+              onClick={() => navigate('/')}
+            >
+              Back
+            </button>
             <button className='gs-btn-primary' type='submit' disabled={loading}>
               {loading ? 'Validating...' : 'Deploy'}
             </button>

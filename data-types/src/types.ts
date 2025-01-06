@@ -1,21 +1,23 @@
+export interface DeploymentDetails {
+  imageName: string;
+  serviceName: string;
+  namespace: string;
+  port: number;
+  replicas: number;
+  serviceUrl?: string;
+}
+
 export interface DeploymentStatus {
   details: DeploymentDetails;
   state: DeploymentState;
 }
 
-export interface DeploymentDetails {
-  imageName: string;
-  serviceName: string;
-  namespace: string;
-  port: string;
-  replicas: number;
-  serviceUrl?: string | undefined;
-}
-
 export enum DeploymentState {
-  Pending = 'Pending',
+  Pending = 'Deployment Pending',
   Validating = 'Validating Deployment Details',
   NamespaceCheck = 'Checking namespace availability',
+  NamespaceUnavailable = 'Namespace already exists',
+  CreatingNamespace = 'Creating namespace',
   NamespaceCreated = 'Namespace created',
   CreatingDeployment = 'Creating deployment',
   DeploymentCreated = 'Deployment created',
@@ -28,4 +30,56 @@ export enum DeploymentState {
   Failed = 'Deployment failed',
 }
 
-export type DeploymentMap = Map<string, DeploymentStatus>;
+export type VariantType =
+  | 'neutral'
+  | 'progressing'
+  | 'warning'
+  | 'success'
+  | 'error';
+
+export interface DeploymentStateInfo {
+  percentage: number;
+  variant: VariantType;
+}
+
+export const DeploymentStateData: Record<DeploymentState, DeploymentStateInfo> =
+  {
+    [DeploymentState.Pending]: { percentage: 0, variant: 'neutral' },
+    [DeploymentState.Validating]: { percentage: 10, variant: 'neutral' },
+    [DeploymentState.NamespaceCheck]: { percentage: 20, variant: 'neutral' },
+    [DeploymentState.NamespaceUnavailable]: {
+      percentage: 20,
+      variant: 'warning',
+    },
+    [DeploymentState.CreatingNamespace]: {
+      percentage: 30,
+      variant: 'progressing',
+    },
+    [DeploymentState.NamespaceCreated]: {
+      percentage: 30,
+      variant: 'progressing',
+    },
+    [DeploymentState.CreatingDeployment]: {
+      percentage: 40,
+      variant: 'progressing',
+    },
+    [DeploymentState.DeploymentCreated]: {
+      percentage: 50,
+      variant: 'progressing',
+    },
+    [DeploymentState.CreatingService]: {
+      percentage: 60,
+      variant: 'progressing',
+    },
+    [DeploymentState.ServiceCreated]: {
+      percentage: 70,
+      variant: 'progressing',
+    },
+    [DeploymentState.WaitingForPods]: { percentage: 80, variant: 'warning' },
+    [DeploymentState.PodsReady]: { percentage: 90, variant: 'success' },
+    [DeploymentState.PortForwarding]: { percentage: 95, variant: 'success' },
+    [DeploymentState.Completed]: { percentage: 100, variant: 'success' },
+    [DeploymentState.Failed]: { percentage: 100, variant: 'error' },
+  };
+
+export type Deployments = Map<string, DeploymentStatus>;
