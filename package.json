@@ -7,7 +7,7 @@
     "infrastructure"
   ],
   "scripts": {
-    "install:all": "npm install --workspaces",
+    "install:all": "npm install --workspaces --if-present",
     "build:all": "npm run build --workspaces --if-present",
     "test:all": "npm run test --workspaces --if-present",
     "start:all": "npm run start --workspaces --if-present"
