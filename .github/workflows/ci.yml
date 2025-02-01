@@ -13,9 +13,33 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '23'
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies from root
+        # Running this at the root ensures that npm reads the workspace configuration
+        run: npm ci
+
       - name: Build data-types package
-        working-directory: ./data-types
-        run: npm run build
+        # Use npm's workspace flag to build the local package
+        run: npm run build --workspace=data-types
+
+      - name: Upload data-types build artifact
+        # Upload the built output (adjust the path if your build output directory is different)
+        uses: actions/upload-artifact@v3
+        with:
+          name: data-types-build
+          path: data-types/dist
 
   backend-tests:
     name: Run Backend Tests
@@ -25,12 +49,32 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Install backend dependencies
-        run: npm install
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '23'
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies from root
+        run: npm ci
+
+      - name: Download data-types build artifact
+        # Download the previously built output into the same location so that the package is complete
+        uses: actions/download-artifact@v3
+        with:
+          name: data-types-build
+          path: data-types/dist
 
       - name: Run backend tests
-        working-directory: ./backend
-        run: npm test
+        # Running tests for the backend workspace
+        run: npm test --workspace=backend
 
   frontend-tests:
     name: Run Frontend Tests
@@ -40,9 +84,27 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Install frontend dependencies
-        run: npm install
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '23'
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies from root
+        run: npm ci
+
+      - name: Download data-types build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: data-types-build
+          path: data-types/dist
 
       - name: Run frontend tests
-        working-directory: ./frontend
-        run: npm test
+        run: npm test --workspace=frontend
