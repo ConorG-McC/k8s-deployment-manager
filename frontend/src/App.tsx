@@ -8,6 +8,7 @@ import HomePage from './components/homePage/HomePage';
 
 function App(): React.ReactElement {
   const [deploymentId, setDeploymentId] = useState<string | null>(null);
+  const releaseTag = process.env.RELEASE_TAG || 'development';
 
   return (
     <div>
@@ -18,7 +19,7 @@ function App(): React.ReactElement {
         <h1>Kubernetes Deployment Tracker</h1>
       </div>
       <div className='build-info-watermark'>
-        <span>[version number]</span>
+        <span>{releaseTag}</span>
       </div>
       <Routes>
         <Route path='/' element={<HomePage />} />
