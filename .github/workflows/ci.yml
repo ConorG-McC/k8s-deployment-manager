@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '23'
 
       - name: Cache dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             node_modules
@@ -36,7 +36,7 @@ jobs:
 
       - name: Upload data-types build artifact
         # Upload the built output (adjust the path if your build output directory is different)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: data-types-build
           path: data-types/dist
@@ -47,15 +47,15 @@ jobs:
     needs: build-data-types
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '23'
 
       - name: Restore dependencies cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             node_modules
@@ -67,7 +67,7 @@ jobs:
 
       - name: Download data-types build artifact
         # Download the previously built output into the same location so that the package is complete
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: data-types-build
           path: data-types/dist
@@ -82,15 +82,15 @@ jobs:
     needs: build-data-types
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '23'
 
       - name: Restore dependencies cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             node_modules
@@ -101,7 +101,7 @@ jobs:
         run: npm ci
 
       - name: Download data-types build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: data-types-build
           path: data-types/dist
