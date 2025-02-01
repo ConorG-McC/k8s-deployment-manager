@@ -1,3 +1,21 @@
+import * as k8s from '@kubernetes/client-node';
+import { ChildProcess } from 'child_process';
+
+export interface IKubeClients {
+  appsApi: k8s.AppsV1Api;
+  coreApi: k8s.CoreV1Api;
+}
+
+export interface IProcessExecutor {
+  execCommand(command: string): ChildProcess;
+}
+
+export interface DeploymentManagerOptions {
+  kubeClients?: IKubeClients;
+  processExecutor?: IProcessExecutor;
+  simulateDelays?: boolean;
+}
+
 export interface DeploymentDetails {
   imageName: string;
   serviceName: string;
