@@ -1,5 +1,8 @@
 import { ChildProcess, exec } from 'child_process';
-import { IProcessExecutor } from 'data-types';
+
+export interface IProcessExecutor {
+  execCommand(command: string): ChildProcess;
+}
 
 export class ProcessExecutor implements IProcessExecutor {
   execCommand(command: string): ChildProcess {

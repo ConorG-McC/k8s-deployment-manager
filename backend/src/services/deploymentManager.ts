@@ -6,14 +6,20 @@ import {
   Deployments,
   DeploymentState,
   DeploymentStatus,
-  IProcessExecutor,
-  DeploymentManagerOptions,
 } from 'data-types';
 import { sleep } from '../utils/sleep';
-import { ProcessExecutor } from '../utils/processExecutor';
+import { IProcessExecutor, ProcessExecutor } from '../utils/processExecutor';
 import { logError, logInfo } from '../utils/logger';
 
-const DELAY_VALIDATION = 2000;
+export interface IKubeClients {
+  appsApi: k8s.AppsV1Api;
+  coreApi: k8s.CoreV1Api;
+}
+export interface DeploymentManagerOptions {
+  kubeClients?: IKubeClients;
+  processExecutor?: IProcessExecutor;
+  simulateDelays?: boolean;
+}
 
 export class DeploymentManager extends EventEmitter {
   private deployments: Deployments = new Map();
@@ -22,6 +28,7 @@ export class DeploymentManager extends EventEmitter {
   private portForwardProcesses: Map<string, ChildProcess> = new Map();
   private processExecutor: IProcessExecutor;
   private simulateDelays: boolean;
+  private DELAY_VALIDATION = 2000;
 
   constructor(props: DeploymentManagerOptions = {}) {
     super();
@@ -64,7 +71,7 @@ export class DeploymentManager extends EventEmitter {
     details: DeploymentDetails
   ): Promise<void> {
     this.updateDeploymentState(deploymentId, DeploymentState.Validating);
-    await this.delay(DELAY_VALIDATION);
+    await this.delay(this.DELAY_VALIDATION);
     logInfo('Validating deployment details...');
     const { imageName, serviceName, namespace, port, replicas } = details;
 
@@ -126,7 +133,7 @@ export class DeploymentManager extends EventEmitter {
 
   async checkNamespace(deploymentId: string, namespace: string): Promise<void> {
     this.updateDeploymentState(deploymentId, DeploymentState.NamespaceCheck);
-    await this.delay(DELAY_VALIDATION);
+    await this.delay(this.DELAY_VALIDATION);
     logInfo(`Checking namespace: ${namespace}`);
     try {
       await this.k8sCoreApi.readNamespace(namespace);
@@ -147,11 +154,11 @@ export class DeploymentManager extends EventEmitter {
           deploymentId,
           DeploymentState.NamespaceCreated
         );
-        await this.delay(DELAY_VALIDATION);
+        await this.delay(this.DELAY_VALIDATION);
         logInfo(`Namespace '${namespace}' created.`);
       } else {
         this.updateDeploymentState(deploymentId, DeploymentState.Failed);
-        await this.delay(DELAY_VALIDATION);
+        await this.delay(this.DELAY_VALIDATION);
         logError(`Error checking namespace '${namespace}':`, err.message);
         throw err;
       }
@@ -206,7 +213,7 @@ export class DeploymentManager extends EventEmitter {
         deploymentId,
         DeploymentState.CreatingDeployment
       );
-      await this.delay(DELAY_VALIDATION);
+      await this.delay(this.DELAY_VALIDATION);
       await this.k8sAppsApi.createNamespacedDeployment(
         namespace,
         deploymentManifest
@@ -215,13 +222,13 @@ export class DeploymentManager extends EventEmitter {
         deploymentId,
         DeploymentState.DeploymentCreated
       );
-      await this.delay(DELAY_VALIDATION);
+      await this.delay(this.DELAY_VALIDATION);
       logInfo(
         `Deployment '${serviceName}' created in namespace '${namespace}'.`
       );
     } catch (err: any) {
       this.updateDeploymentState(deploymentId, DeploymentState.Failed);
-      await this.delay(DELAY_VALIDATION);
+      await this.delay(this.DELAY_VALIDATION);
       logError('Error creating deployment:', err.message);
       throw err;
     }
@@ -232,7 +239,7 @@ export class DeploymentManager extends EventEmitter {
     details: DeploymentDetails
   ): Promise<void> {
     this.updateDeploymentState(deploymentId, DeploymentState.CreatingService);
-    await this.delay(DELAY_VALIDATION);
+    await this.delay(this.DELAY_VALIDATION);
     await this.createService(
       details.serviceName,
       details.namespace,
@@ -240,7 +247,7 @@ export class DeploymentManager extends EventEmitter {
       'NodePort'
     );
     this.updateDeploymentState(deploymentId, DeploymentState.ServiceCreated);
-    await this.delay(DELAY_VALIDATION);
+    await this.delay(this.DELAY_VALIDATION);
   }
 
   private async waitForPodsReady(
@@ -249,10 +256,10 @@ export class DeploymentManager extends EventEmitter {
     serviceName: string
   ): Promise<void> {
     this.updateDeploymentState(deploymentId, DeploymentState.WaitingForPods);
-    await this.delay(DELAY_VALIDATION);
+    await this.delay(this.DELAY_VALIDATION);
     await this.waitForDeploymentReady(namespace, serviceName);
     this.updateDeploymentState(deploymentId, DeploymentState.PodsReady);
-    await this.delay(DELAY_VALIDATION);
+    await this.delay(this.DELAY_VALIDATION);
   }
 
   private async setupPortForwarding(
@@ -263,7 +270,7 @@ export class DeploymentManager extends EventEmitter {
     const namespace = details.namespace;
     const randomPort = Math.floor(Math.random() * 10000) + 30000;
     this.updateDeploymentState(deploymentId, DeploymentState.PortForwarding);
-    await this.delay(DELAY_VALIDATION);
+    await this.delay(this.DELAY_VALIDATION);
     await this.portForwardService(
       namespace,
       `${serviceName}-service`,
@@ -277,7 +284,7 @@ export class DeploymentManager extends EventEmitter {
     }
     logInfo(`Service available at http://127.0.0.1:${randomPort}`);
     this.updateDeploymentState(deploymentId, DeploymentState.Completed);
-    await this.delay(DELAY_VALIDATION);
+    await this.delay(this.DELAY_VALIDATION);
   }
 
   async createService(
@@ -328,7 +335,7 @@ export class DeploymentManager extends EventEmitter {
       logInfo(
         `Waiting for deployment '${serviceName}' to be ready... (${availableReplicas}/${desiredReplicas} replicas available)`
       );
-      await this.delay(DELAY_VALIDATION);
+      await this.delay(this.DELAY_VALIDATION);
     }
     throw new Error(
       `Deployment '${serviceName}' did not become ready within the timeout period.`
