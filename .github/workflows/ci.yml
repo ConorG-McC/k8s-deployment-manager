@@ -1,0 +1,65 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  install:
+    name: Install Root Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies at root
+        run: npm install
+
+  build-data-types:
+    name: Build Data-Types Package
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies for data-types
+        working-directory: ./data-types
+        run: npm install
+
+      - name: Build data-types package
+        working-directory: ./data-types
+        run: npm run build
+
+  backend-tests:
+    name: Run Backend Tests
+    runs-on: ubuntu-latest
+    needs: build-data-types
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: Run backend tests
+        working-directory: ./backend
+        run: npm test
+
+  frontend-tests:
+    name: Run Frontend Tests
+    runs-on: ubuntu-latest
+    needs: build-data-types
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Run frontend tests
+        working-directory: ./frontend
+        run: npm test
