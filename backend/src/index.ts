@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 const webSocketManager = new WebSocketManager();
-const deploymentManager = new DeploymentManager();
+const deploymentManager = new DeploymentManager({ simulateDelays: true });
 
 deploymentManager.on(
   'stateChange',
