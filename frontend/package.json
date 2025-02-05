@@ -9,7 +9,7 @@
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.108",
     "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
+    "@types/react-dom": "^19.0.3",
     "data-types": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
