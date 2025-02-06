@@ -115,7 +115,7 @@ export class DeploymentManager extends EventEmitter {
       throw new Error('Port must be a number between 1 and 65535.');
     }
 
-    if (replicas < 1) {
+    if (replicas < 1 || !Number.isInteger(replicas)) {
       throw new Error('Replicas must be a positive integer.');
     }
     const deploymentId = `${serviceName}-${Date.now()}`;

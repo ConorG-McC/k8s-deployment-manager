@@ -1,46 +1,44 @@
-// DeploymentManager.full.test.ts
-
 import { DeploymentManager } from './deploymentManager';
 import * as k8s from '@kubernetes/client-node';
 import { ChildProcess } from 'child_process';
 import { DeploymentDetails, DeploymentState } from 'data-types';
 
-// Factory function to create a new DeploymentManager instance with fake dependencies.
-const createDeploymentManager = (): DeploymentManager => {
-  const fakeAppsApi: Partial<k8s.AppsV1Api> = {
-    createNamespacedDeployment: jest.fn().mockResolvedValue({}),
-    readNamespacedDeploymentStatus: jest.fn().mockResolvedValue({
-      body: { status: { availableReplicas: 1 }, spec: { replicas: 1 } },
+// Mock implementations for kubernetes clients
+const fakeAppsApi: Partial<k8s.AppsV1Api> = {
+  createNamespacedDeployment: jest.fn().mockResolvedValue({}),
+  readNamespacedDeploymentStatus: jest.fn().mockResolvedValue({
+    body: { status: { availableReplicas: 1 }, spec: { replicas: 1 } },
+  }),
+};
+
+const fakeCoreApi: Partial<k8s.CoreV1Api> = {
+  readNamespace: jest.fn().mockResolvedValue({}),
+  createNamespace: jest.fn().mockResolvedValue({}),
+  createNamespacedService: jest.fn().mockResolvedValue({}),
+};
+
+const fakeKubeClients = {
+  appsApi: fakeAppsApi as k8s.AppsV1Api,
+  coreApi: fakeCoreApi as k8s.CoreV1Api,
+};
+
+const fakeProcessExecutor = {
+  execCommand: jest.fn().mockReturnValue({
+    stdout: { on: jest.fn() },
+    stderr: { on: jest.fn() },
+    on: jest.fn((event: string, callback: (code: number) => void) => {
+      if (event === 'close') {
+        callback(0);
+      }
     }),
-  };
-
-  const fakeCoreApi: Partial<k8s.CoreV1Api> = {
-    readNamespace: jest.fn().mockResolvedValue({}),
-    createNamespace: jest.fn().mockResolvedValue({}),
-    createNamespacedService: jest.fn().mockResolvedValue({}),
-  };
-
-  const fakeKubeClients = {
-    appsApi: fakeAppsApi as k8s.AppsV1Api,
-    coreApi: fakeCoreApi as k8s.CoreV1Api,
-  };
-
-  const fakeProcessExecutor = {
-    execCommand: jest.fn().mockReturnValue({
-      stdout: { on: jest.fn() },
-      stderr: { on: jest.fn() },
-      on: jest.fn((event: string, callback: (code: number) => void) => {
-        if (event === 'close') {
-          callback(0);
-        }
-      }),
-    } as unknown as ChildProcess),
-  };
-
+  } as unknown as ChildProcess),
+};
+// Factory helper that accepts a simulateDelays flag.
+const createDeploymentManager = (simulateDelays = false): DeploymentManager => {
   return new DeploymentManager({
     kubeClients: fakeKubeClients,
     processExecutor: fakeProcessExecutor,
-    simulateDelays: false,
+    simulateDelays,
   });
 };
 
@@ -50,14 +48,6 @@ const sampleValidDetails: DeploymentDetails = {
   namespace: 'default',
   port: 80,
   replicas: 1,
-};
-
-const sampleInvalidDetails: DeploymentDetails = {
-  imageName: '',
-  serviceName: '',
-  namespace: '',
-  port: 0,
-  replicas: 0,
 };
 
 describe('DeploymentManager Tests', () => {
@@ -95,6 +85,46 @@ describe('DeploymentManager Tests', () => {
 
     test('should throw an error when replicas is less than 1', async () => {
       const invalidDetails = { ...sampleValidDetails, replicas: 0 };
+      const deploymentId = 'deployment-123';
+      await expect(
+        manager.validateDeploymentDetails(deploymentId, invalidDetails)
+      ).rejects.toThrow('Replicas must be a positive integer.');
+    });
+
+    test('should throw an error when imageName is only whitespace', async () => {
+      const invalidDetails = { ...sampleValidDetails, imageName: '   ' };
+      const deploymentId = 'deployment-123';
+      await expect(
+        manager.validateDeploymentDetails(deploymentId, invalidDetails)
+      ).rejects.toThrow('Image name is required and cannot be empty.');
+    });
+
+    test('should throw an error when serviceName is only whitespace', async () => {
+      const invalidDetails = { ...sampleValidDetails, serviceName: '   ' };
+      const deploymentId = 'deployment-123';
+      await expect(
+        manager.validateDeploymentDetails(deploymentId, invalidDetails)
+      ).rejects.toThrow('Service name is required and cannot be empty.');
+    });
+
+    test('should throw an error when namespace is only whitespace', async () => {
+      const invalidDetails = { ...sampleValidDetails, namespace: '   ' };
+      const deploymentId = 'deployment-123';
+      await expect(
+        manager.validateDeploymentDetails(deploymentId, invalidDetails)
+      ).rejects.toThrow('Namespace is required and cannot be empty.');
+    });
+
+    test('should throw an error when port is greater than 65535', async () => {
+      const invalidDetails = { ...sampleValidDetails, port: 70000 };
+      const deploymentId = 'deployment-123';
+      await expect(
+        manager.validateDeploymentDetails(deploymentId, invalidDetails)
+      ).rejects.toThrow('Port must be a number between 1 and 65535.');
+    });
+
+    test('should throw an error when replicas is not an integer', async () => {
+      const invalidDetails = { ...sampleValidDetails, replicas: 1.5 };
       const deploymentId = 'deployment-123';
       await expect(
         manager.validateDeploymentDetails(deploymentId, invalidDetails)
@@ -195,6 +225,44 @@ describe('DeploymentManager Tests', () => {
         expectedCommand
       );
     });
+
+    test('should set up stdout, stderr, and close listeners on the process', async () => {
+      const fakeProcess = {
+        stdout: { on: jest.fn() },
+        stderr: { on: jest.fn() },
+        on: jest.fn((event: string, callback: (code: number) => void) => {
+          if (event === 'close') {
+            callback(1);
+          }
+        }),
+      } as unknown as ChildProcess;
+      const fakeProcessExecutor = {
+        execCommand: jest.fn().mockReturnValue(fakeProcess),
+      };
+      const customManager = new DeploymentManager({
+        kubeClients: fakeKubeClients,
+        processExecutor: fakeProcessExecutor,
+        simulateDelays: false,
+      });
+      await customManager.portForwardService(
+        sampleValidDetails.namespace,
+        `${sampleValidDetails.serviceName}-service`,
+        30000,
+        sampleValidDetails.port
+      );
+      expect(fakeProcess.stdout!.on).toHaveBeenCalledWith(
+        'data',
+        expect.any(Function)
+      );
+      expect(fakeProcess.stderr!.on).toHaveBeenCalledWith(
+        'data',
+        expect.any(Function)
+      );
+      expect(fakeProcess.on).toHaveBeenCalledWith(
+        'close',
+        expect.any(Function)
+      );
+    });
   });
 
   describe('updateDeploymentState()', () => {
@@ -246,6 +314,87 @@ describe('DeploymentManager Tests', () => {
       expect(deployment?.details.serviceUrl).toMatch(
         /^http:\/\/127\.0\.0\.1:\d+$/
       );
+    });
+  });
+
+  describe('Additional Input Validations', () => {
+    test('addDeployment should throw for whitespace-only imageName', async () => {
+      const invalidDetails = { ...sampleValidDetails, imageName: '   ' };
+      await expect(
+        createDeploymentManager().addDeployment(invalidDetails)
+      ).rejects.toThrow('Image name is required and cannot be empty.');
+    });
+
+    test('addDeployment should throw for whitespace-only serviceName', async () => {
+      const invalidDetails = { ...sampleValidDetails, serviceName: '   ' };
+      await expect(
+        createDeploymentManager().addDeployment(invalidDetails)
+      ).rejects.toThrow('Service name is required and cannot be empty.');
+    });
+
+    test('addDeployment should throw for whitespace-only namespace', async () => {
+      const invalidDetails = { ...sampleValidDetails, namespace: '   ' };
+      await expect(
+        createDeploymentManager().addDeployment(invalidDetails)
+      ).rejects.toThrow('Namespace is required and cannot be empty.');
+    });
+
+    test('addDeployment should throw for port number above 65535', async () => {
+      const invalidDetails = { ...sampleValidDetails, port: 70000 };
+      await expect(
+        createDeploymentManager().addDeployment(invalidDetails)
+      ).rejects.toThrow('Port must be a number between 1 and 65535.');
+    });
+
+    test('addDeployment should throw for non-integer replicas', async () => {
+      const invalidDetails = { ...sampleValidDetails, replicas: 2.5 };
+      await expect(
+        createDeploymentManager().addDeployment(invalidDetails)
+      ).rejects.toThrow('Replicas must be a positive integer.');
+    });
+  });
+
+  describe('waitForDeploymentReady()', () => {
+    test('should throw timeout error if deployment does not become ready', async () => {
+      (
+        fakeAppsApi.readNamespacedDeploymentStatus as jest.Mock
+      ).mockResolvedValue({
+        body: {
+          status: { availableReplicas: 0 },
+          spec: { replicas: 1 },
+        },
+      });
+
+      await manager.addDeployment(sampleValidDetails);
+
+      await expect(
+        manager['waitForDeploymentReady'](
+          sampleValidDetails.namespace,
+          sampleValidDetails.serviceName
+        )
+      ).rejects.toThrow(
+        `Deployment '${sampleValidDetails.serviceName}' did not become ready within the timeout period.`
+      );
+    });
+
+    test('should succeed when deployment becomes ready', async () => {
+      (
+        fakeAppsApi.readNamespacedDeploymentStatus as jest.Mock
+      ).mockResolvedValue({
+        body: {
+          status: { availableReplicas: 1 },
+          spec: { replicas: 1 },
+        },
+      });
+
+      await manager.addDeployment(sampleValidDetails);
+
+      await expect(
+        manager['waitForDeploymentReady'](
+          sampleValidDetails.namespace,
+          sampleValidDetails.serviceName
+        )
+      ).resolves.not.toThrow();
     });
   });
 });
