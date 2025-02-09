@@ -4,15 +4,11 @@ import request from 'supertest';
 import { WebSocket } from 'ws';
 import { app, server } from './index';
 
-// --- Mock the Kubernetes Client to avoid contacting a real cluster ---
 jest.mock('@kubernetes/client-node', () => {
   class FakeKubeConfig {
-    loadFromDefault() {
-      // no-op for tests
-    }
+    loadFromDefault() {}
     makeApiClient(api: any) {
       return {
-        // Fake implementations for Kubernetes API methods
         readNamespace: jest.fn().mockResolvedValue({}),
         createNamespace: jest.fn().mockResolvedValue({}),
         createNamespacedDeployment: jest.fn().mockResolvedValue({}),
@@ -35,7 +31,6 @@ describe('Integration Tests for Index', () => {
   let port: number;
 
   beforeAll((done) => {
-    // Start the server on an ephemeral port.
     testServer = server.listen(0, () => {
       port = (testServer.address() as any).port;
       done();
@@ -80,13 +75,12 @@ describe('Integration Tests for Index', () => {
     test('should close connection with invalid deployment ID', (done) => {
       const ws = new WebSocket(`ws://localhost:${port}/invalid-deployment`);
       ws.on('close', (code, reason) => {
-        expect(code).toBe(1008); // as defined in index.ts for invalid deployments
+        expect(code).toBe(1008);
         done();
       });
     });
 
     test('should connect and receive initial deployment data for a valid deployment ID', (done) => {
-      // First, create a deployment.
       request(app)
         .post('/deploy')
         .send({
@@ -100,9 +94,7 @@ describe('Integration Tests for Index', () => {
         .then((res) => {
           const deploymentId = res.body.deploymentId;
           const ws = new WebSocket(`ws://localhost:${port}/${deploymentId}`);
-          ws.on('open', () => {
-            // Connection established, now wait for an initial message.
-          });
+          ws.on('open', () => {});
           ws.on('message', (data) => {
             const message = JSON.parse(data.toString());
             expect(message).toHaveProperty('state');
@@ -110,7 +102,6 @@ describe('Integration Tests for Index', () => {
             done();
           });
           ws.on('error', (err) => done(err));
-          // Fail if no message is received in time.
           setTimeout(() => {
             ws.close();
           }, 3000);

@@ -1,5 +1,4 @@
 @startuml FrontendSitemapTopDown
-' Styling configuration for a polished, professional look
 skinparam rectangle {
     BackgroundColor #F8F8F8
     BorderColor #2e6c80
@@ -17,19 +16,15 @@ skinparam note {
     BorderColor #bc8f8f
     FontName "Arial"
 }
-' Ensure a top-to-bottom layout
 skinparam rankDir TB
 
-' Root node of the sitemap
 rectangle "Frontend Application" as App
 
-' Define child nodes (routes) with additional details for clarity
 rectangle "Home Page ("/")\n• 'Start Deployment' button navigates to Deployment Form ("/deploy")" as Home
 rectangle "Deployment Form ("/deploy")\n• User inputs deployment parameters (image, namespace, port, replicas)\n• Submits form to trigger deployment request and redirects to Deployment Progress ("/progress/:deploymentId")" as DeployForm
 rectangle "Deployment Progress ("/progress/:deploymentId")\n• Displays real-time status updates via WebSocket\n• Shows completion details (e.g., final service URL)" as DeployProgress
 rectangle "Fallback Route ("*")\n• Redirects to Home Page ("/")" as Fallback
 
-' Establish vertical relationships from the root to each route
 App -down-> Home
 App -down-> DeployForm
 App -down-> DeployProgress
