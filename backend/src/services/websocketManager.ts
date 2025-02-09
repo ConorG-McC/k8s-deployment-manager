@@ -42,7 +42,7 @@ export class WebSocketManager {
     const clients = this.connections.get(deploymentId);
     if (clients) {
       clients.forEach((ws) => {
-        ws.close(1001, 'Deployment completed or failed'); // 1001: Going Away
+        ws.close(1001, 'Deployment completed or failed');
       });
       this.connections.delete(deploymentId);
       console.log(
