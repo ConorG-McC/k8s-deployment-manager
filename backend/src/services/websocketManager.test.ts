@@ -19,6 +19,10 @@ describe('WebSocketManager', () => {
     wsManager = new WebSocketManager();
   });
 
+  afterEach(() => {
+    wsManager.closeConnections(deploymentId);
+  });
+
   describe('addConnection()', () => {
     test('should add a WebSocket connection for a given deployment ID', async () => {
       const fakeWs = createFakeWebSocket();
