@@ -1,5 +1,3 @@
-// src/index.test.ts
-
 import request from 'supertest';
 import { WebSocket } from 'ws';
 import { app, server } from './index';
@@ -94,17 +92,25 @@ describe('Integration Tests for Index', () => {
         .then((res) => {
           const deploymentId = res.body.deploymentId;
           const ws = new WebSocket(`ws://localhost:${port}/${deploymentId}`);
-          ws.on('open', () => {});
+          let timeoutId: NodeJS.Timeout;
+          ws.on('open', () => {
+            // Start a timeout to ensure we do not wait indefinitely
+            timeoutId = setTimeout(() => {
+              ws.close();
+              done(new Error('Timeout waiting for message'));
+            }, 3000);
+          });
           ws.on('message', (data) => {
+            clearTimeout(timeoutId);
             const message = JSON.parse(data.toString());
             expect(message).toHaveProperty('state');
             ws.close();
             done();
           });
-          ws.on('error', (err) => done(err));
-          setTimeout(() => {
-            ws.close();
-          }, 3000);
+          ws.on('error', (err) => {
+            clearTimeout(timeoutId);
+            done(err);
+          });
         })
         .catch(done);
     });
