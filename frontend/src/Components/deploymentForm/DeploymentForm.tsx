@@ -1,6 +1,8 @@
 import { DeploymentDetails } from 'data-types';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { createDeployment } from 'src/services/apiService';
+import { validateDeploymentDetails } from 'src/utils/validation';
 
 interface DeploymentFormProps {
   onSubmit: (deploymentId: string) => void;
@@ -18,37 +20,26 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     setLoading(true);
     setError(null);
 
-    if (!imageName || !serviceName || !namespace || port < 1 || replicas < 1) {
-      setError('Fields are invalid, please amend.');
+    const deploymentDetails: DeploymentDetails = {
+      imageName,
+      serviceName,
+      namespace,
+      port,
+      replicas,
+    };
+
+    const validationResult = validateDeploymentDetails(deploymentDetails);
+    if (validationResult) {
+      setError(validationResult);
       setLoading(false);
       return;
     }
 
     try {
-      const deploymentDetails: DeploymentDetails = {
-        imageName,
-        serviceName,
-        namespace,
-        port,
-        replicas,
-      };
-
-      const response = await fetch('http://localhost:3001/deploy', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(deploymentDetails),
-      });
-
-      if (!response.ok) {
-        console.error('Failed to create deployment', response);
-        throw new Error('Failed to create deployment');
-      }
-
-      const { deploymentId } = await response.json();
+      const { deploymentId } = await createDeployment(deploymentDetails);
       onSubmit(deploymentId);
       navigate(`/progress/${deploymentId}`);
     } catch (error) {

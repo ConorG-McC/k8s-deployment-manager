@@ -1,11 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  DeploymentState,
-  DeploymentStatus,
-  DeploymentStateData,
-} from 'data-types';
+import { DeploymentState, DeploymentStateData } from 'data-types';
 import ProgressBar from '../progressBar/ProgressBar';
+import useDeploymentWebSocket from 'src/hooks/useDeploymentWebSocket';
 
 interface DeploymentProgressProps {
   deploymentId: string;
@@ -14,50 +11,8 @@ interface DeploymentProgressProps {
 const DeploymentProgress: React.FC<DeploymentProgressProps> = ({
   deploymentId,
 }) => {
-  const [state, setState] = useState<DeploymentState>(DeploymentState.Pending);
-  const [serviceUrl, setServiceUrl] = useState<string | null>(null);
-  const wsRef = useRef<WebSocket | null>(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!deploymentId) {
-      navigate('/');
-      return;
-    }
-
-    const ws = new WebSocket(`ws://localhost:3001/${deploymentId}`);
-    wsRef.current = ws;
-
-    ws.onopen = () => console.log('WebSocket connected.');
-    ws.onmessage = (event) => {
-      const data: DeploymentStatus = JSON.parse(event.data);
-      setState(data.state);
-
-      if (data.state === DeploymentState.Completed && data.details.serviceUrl) {
-        setServiceUrl(data.details.serviceUrl);
-      } else if (data.state === DeploymentState.Failed) {
-        setServiceUrl(null); // Clear service URL on failure
-      }
-    };
-    ws.onerror = (error) => console.error('WebSocket error:', error);
-    ws.onclose = () => console.log('WebSocket closed.');
-
-    return () => {
-      if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-        wsRef.current.close();
-      }
-    };
-  }, [deploymentId, navigate]);
-
-  useEffect(() => {
-    if (
-      state === DeploymentState.Completed ||
-      state === DeploymentState.Failed
-    ) {
-      wsRef.current?.close();
-    }
-  }, [state]);
-
+  const { state, serviceUrl } = useDeploymentWebSocket(deploymentId);
   const handleBack = () => navigate('/');
   const handleDeployAnother = () => navigate('/deploy');
 
