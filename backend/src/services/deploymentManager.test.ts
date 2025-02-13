@@ -1,6 +1,7 @@
 import { DeploymentManager } from './deploymentManager';
 import * as k8s from '@kubernetes/client-node';
 import { ChildProcess } from 'child_process';
+import { time } from 'console';
 import { DeploymentDetails, DeploymentState } from 'data-types';
 
 // Mock implementations for kubernetes clients
@@ -33,13 +34,18 @@ const fakeProcessExecutor = {
     }),
   } as unknown as ChildProcess),
 };
-// Factory helper that accepts a simulateDelays flag.
-const createDeploymentManager = (simulateDelays = false): DeploymentManager => {
-  return new DeploymentManager({
+
+// Updated factory helper with simulateDelays false and overridden delay method.
+const createDeploymentManager = (): DeploymentManager => {
+  const manager = new DeploymentManager({
     kubeClients: fakeKubeClients,
     processExecutor: fakeProcessExecutor,
-    simulateDelays,
+    simulateDelays: false,
   });
+  // Override delay to yield via setImmediate to avoid busy loops
+  manager['delay'] = (_ms: number) =>
+    new Promise((resolve) => setImmediate(resolve));
+  return manager;
 };
 
 const sampleValidDetails: DeploymentDetails = {
@@ -56,6 +62,10 @@ describe('DeploymentManager Tests', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     manager = createDeploymentManager();
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
   });
 
   describe('addDeployment()', () => {
@@ -244,6 +254,9 @@ describe('DeploymentManager Tests', () => {
         processExecutor: fakeProcessExecutor,
         simulateDelays: false,
       });
+      // Override delay here too
+      customManager['delay'] = (_ms: number) =>
+        new Promise((resolve) => setImmediate(resolve));
       await customManager.portForwardService(
         sampleValidDetails.namespace,
         `${sampleValidDetails.serviceName}-service`,
@@ -370,7 +383,8 @@ describe('DeploymentManager Tests', () => {
       await expect(
         manager['waitForDeploymentReady'](
           sampleValidDetails.namespace,
-          sampleValidDetails.serviceName
+          sampleValidDetails.serviceName,
+          1000
         )
       ).rejects.toThrow(
         `Deployment '${sampleValidDetails.serviceName}' did not become ready within the timeout period.`

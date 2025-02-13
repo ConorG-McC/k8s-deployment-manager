@@ -316,10 +316,14 @@ export class DeploymentManager extends EventEmitter {
 
   private async waitForDeploymentReady(
     namespace: string,
-    serviceName: string
+    serviceName: string,
+    timeout?: number
   ): Promise<void> {
     const startTime = Date.now();
-    while (Date.now() - startTime < 30000) {
+    if (!timeout) {
+      timeout = 30000;
+    }
+    while (Date.now() - startTime < timeout) {
       const resp = await this.k8sAppsApi.readNamespacedDeploymentStatus(
         serviceName,
         namespace
