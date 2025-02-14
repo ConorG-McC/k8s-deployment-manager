@@ -1,6 +1,5 @@
 import { DeploymentDetails } from 'data-types';
 
-// frontend/src/services/apiService.ts
 const API_URL = 'http://localhost:3001';
 
 export const createDeployment = async (
