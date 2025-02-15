@@ -1,7 +1,6 @@
 import { DeploymentManager } from './deploymentManager';
 import * as k8s from '@kubernetes/client-node';
 import { ChildProcess } from 'child_process';
-import { time } from 'console';
 import { DeploymentDetails, DeploymentState } from 'data-types';
 
 // Mock implementations for kubernetes clients
@@ -35,7 +34,6 @@ const fakeProcessExecutor = {
   } as unknown as ChildProcess),
 };
 
-// Updated factory helper with simulateDelays false and overridden delay method.
 const createDeploymentManager = (): DeploymentManager => {
   const manager = new DeploymentManager({
     kubeClients: fakeKubeClients,

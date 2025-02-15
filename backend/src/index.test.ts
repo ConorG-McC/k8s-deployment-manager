@@ -1,6 +1,7 @@
 import request from 'supertest';
 import { WebSocket } from 'ws';
 import { app, server } from './index';
+import e from 'express';
 
 jest.mock('@kubernetes/client-node', () => {
   class FakeKubeConfig {
@@ -52,6 +53,7 @@ describe('Integration Tests for Index', () => {
         })
         .expect(200);
       expect(response.body).toHaveProperty('deploymentId');
+      expect(typeof response.body.deploymentId).toBe('string');
     });
 
     test('should return 500 for invalid deployment details', async () => {
@@ -66,6 +68,7 @@ describe('Integration Tests for Index', () => {
         })
         .expect(500);
       expect(response.body).toHaveProperty('error');
+      expect(typeof response.body.error).toBe('object');
     });
   });
 
