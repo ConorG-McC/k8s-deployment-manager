@@ -2,17 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DeploymentState, DeploymentStateData } from 'data-types';
 import ProgressBar from '../progressBar/ProgressBar';
-import useDeploymentWebSocket from 'src/hooks/useDeploymentWebSocket';
+import useDeploymentWebSocket from '../../hooks/useDeploymentWebSocket';
+import { useDeploymentIdContext } from '../../hooks/useDeploymentIdContext';
 
-interface DeploymentProgressProps {
-  deploymentId: string;
-}
-
-const DeploymentProgress: React.FC<DeploymentProgressProps> = ({
-  deploymentId,
-}) => {
+const DeploymentProgress: React.FC = () => {
   const navigate = useNavigate();
-  const { state, serviceUrl } = useDeploymentWebSocket(deploymentId);
+  const { deploymentId } = useDeploymentIdContext();
+  const { state, serviceUrl } = useDeploymentWebSocket();
   const handleBack = () => navigate('/');
   const handleDeployAnother = () => navigate('/deploy');
 
