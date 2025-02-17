@@ -1,14 +1,11 @@
 import { DeploymentDetails } from 'data-types';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createDeployment } from 'src/services/apiService';
-import { validateDeploymentDetails } from 'src/utils/validation';
+import { createDeployment } from '../../services/apiService';
+import { validateDeploymentDetails } from '../../utils//validation';
+import { useDeploymentIdContext } from '../../hooks/useDeploymentIdContext';
 
-interface DeploymentFormProps {
-  onSubmit: (deploymentId: string) => void;
-}
-
-const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
+const DeploymentForm: React.FC = () => {
   const [imageName, setImageName] = useState('');
   const [serviceName, setServiceName] = useState('');
   const [namespace, setNamespace] = useState('');
@@ -17,6 +14,7 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { setDeploymentId } = useDeploymentIdContext();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +38,7 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
 
     try {
       const { deploymentId } = await createDeployment(deploymentDetails);
-      onSubmit(deploymentId);
+      setDeploymentId(deploymentId);
       navigate(`/progress/${deploymentId}`);
     } catch (error) {
       console.error('Error submitting deployment:', error);
@@ -56,7 +54,12 @@ const DeploymentForm: React.FC<DeploymentFormProps> = ({ onSubmit }) => {
         <legend>
           <h2>Deployment Form</h2>
         </legend>
-        <form className='form-primary' onSubmit={handleSubmit}>
+        <form
+          className='form-primary'
+          aria-label='form'
+          onSubmit={handleSubmit}
+          data-testid='deployment-form'
+        >
           <div className='form-line-item'>
             <label htmlFor='image-name-input'>
               Image Name
