@@ -1,0 +1,55 @@
+@startuml ArchitectureOverview
+
+skinparam rectangle {
+    BackgroundColor #ffffff
+    BorderColor #2e6c80
+    FontName "Arial"
+    FontSize 12
+    FontColor black
+}
+skinparam package {
+    BackgroundColor #e8f4f8
+    BorderColor #2e6c80
+    FontName "Arial"
+    FontSize 12
+    FontStyle bold
+}
+skinparam note {
+    BackgroundColor #ffefc6
+    BorderColor #bc8f8f
+    FontName "Arial"
+}
+
+left to right direction
+
+rectangle "User (Browser)" as user
+rectangle "Frontend\n(React App)" as frontend
+rectangle "Shared Data Types\n(TypeScript Interfaces)" as shared
+
+package "Backend Services" {
+    rectangle "Express API" as expressAPI
+    rectangle "Deployment Manager" as deployManager
+    rectangle "WebSocket Manager" as wsManager
+}
+
+package "Infrastructure Layer" {
+    rectangle "Terraform Infrastructure\n(AWS Provisioning)" as terraform
+    rectangle "Kubernetes Cluster\n(AWS EKS)" as k8s
+}
+
+user --> frontend : "Accesses UI"
+frontend --> expressAPI : "REST API / WebSocket Requests"
+frontend --> shared : "Uses"
+expressAPI --> deployManager : "Routes deployment tasks"
+expressAPI --> wsManager : "Initiates WebSocket connections"
+deployManager --> k8s : "Executes K8s API Calls"
+deployManager --> shared : "Uses common\ndata types"
+wsManager --> frontend : "Broadcasts\nstatus updates"
+
+note right of deployManager
+  Handles deployment requests,
+  orchestrates Kubernetes operations,
+  and streams real-time updates.
+end note
+
+@enduml
