@@ -1,7 +1,6 @@
 import request from 'supertest';
 import { WebSocket } from 'ws';
 import { app, server } from './index';
-import e from 'express';
 
 jest.mock('@kubernetes/client-node', () => {
   class FakeKubeConfig {
