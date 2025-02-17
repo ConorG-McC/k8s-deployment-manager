@@ -108,3 +108,42 @@ jobs:
 
       - name: Run frontend tests
         run: npm test --workspace=frontend
+
+  cypress-tests:
+    name: Run Cypress E2E Tests
+    runs-on: ubuntu-latest
+    needs: build-data-types # if your frontend depends on the built data-types package
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '23'
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies from root
+        run: npm ci
+
+      - name: Download data-types build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: data-types-build
+          path: data-types/dist
+
+      - name: Start Frontend Server
+        run: |
+          npm run start --workspace=frontend &
+          # Wait for the server to be available at http://localhost:3000
+          npx wait-on http://localhost:3000
+
+      - name: Run Cypress Tests
+        run: npm run cypress:run

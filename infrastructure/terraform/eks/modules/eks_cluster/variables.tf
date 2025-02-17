@@ -108,14 +108,14 @@ locals {
   max_unavailable     = var.max_unavailable
   private_subnets     = var.private_subnets
   // Node group local variables 
-  ami_type       = var.ami_type
-  capacity_type  = var.capacity_type
-  disk_size      = var.disk_size
-  instance_type  = var.instance_type
-  desired_size   = var.desired_size
-  min_size       = var.min_size
-  max_size       = var.max_size
-  nodegroup_tags = var.nodegroup_tags
+  ami_type            = var.ami_type
+  capacity_type       = var.capacity_type
+  disk_size           = var.disk_size
+  instance_type       = var.instance_type
+  desired_size        = var.desired_size
+  min_size            = var.min_size
+  max_size            = var.max_size
+  nodegroup_tags      = var.nodegroup_tags
   public_access_cidrs = var.public_access_cidrs
   common_tags = {
     Application = "ESN PoC"
