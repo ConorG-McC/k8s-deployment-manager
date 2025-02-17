@@ -17,7 +17,7 @@ function App(): React.ReactElement {
         <p className='white'>DEMO</p>
       </div>
       <div className='navbar'>
-        <h1>Kubernetes Deployment Tracker</h1>
+        <h1>Kubernetes Deployment Manager</h1>
       </div>
       <div className='build-info-watermark'>
         <span>{releaseTag}</span>

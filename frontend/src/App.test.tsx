@@ -39,7 +39,7 @@ describe('App Component', () => {
 
     expect(screen.getByTestId('home-page')).toBeInTheDocument();
     expect(
-      screen.getByText('Kubernetes Deployment Tracker')
+      screen.getByText('Kubernetes Deployment Manager')
     ).toBeInTheDocument();
     expect(screen.getByText('DEMO')).toBeInTheDocument();
   });

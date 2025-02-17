@@ -23,6 +23,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -45,6 +47,9 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
-    "dotenv": "^16.4.7"
+    "@types/cypress": "^0.1.6",
+    "cypress": "^14.0.3",
+    "dotenv": "^16.4.7",
+    "wait-on": "^8.0.2"
   }
 }
