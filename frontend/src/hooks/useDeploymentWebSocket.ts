@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { DeploymentState, DeploymentStatus } from 'data-types';
+import { useDeploymentIdContext } from './useDeploymentIdContext';
 
-const useDeploymentWebSocket = (deploymentId: string) => {
+const useDeploymentWebSocket = () => {
   const [state, setState] = useState<DeploymentState>(DeploymentState.Pending);
   const [serviceUrl, setServiceUrl] = useState<string | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
+  const { deploymentId } = useDeploymentIdContext();
 
   useEffect(() => {
     if (!deploymentId) return;
