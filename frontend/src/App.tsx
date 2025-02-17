@@ -37,7 +37,6 @@ function App(): React.ReactElement {
             )
           }
         />
-        {/* Add a fallback route for undefined paths */}
         <Route path='*' element={<HomePage />} />
       </Routes>
     </div>
